@@ -55,9 +55,14 @@ function PatientVerification({ current, setCurrent }) {
       setLoading(true);
       numVerification(phoneNo);
       console.log('Form submitted successfully!', values)
-      setCurrent(1);
-      setLoading(false)
-      dispatch(setPatientPhone({ patientPhoneNo: phoneNo }))
+      if(values)
+      {
+        setTimeout(() => {
+          setCurrent(1);
+          setLoading(false)
+          dispatch(setPatientPhone({ patientPhoneNo: phoneNo }))
+        }, 500);
+      }
       //   .unwrap()
       //   .then((x) => {
       //     console.log('xOTP', x)
@@ -125,7 +130,7 @@ function PatientVerification({ current, setCurrent }) {
             rules={[
               {
                 required: true,
-                message: "Phone number must be 10 digits!!",
+                message: "Please input patient's phone number!",
                 validator:validatePhoneNumber
               },
               
@@ -184,7 +189,22 @@ function PatientVerification({ current, setCurrent }) {
         </Form>
         <br />
 
-      
+        {/* {!phoneNo.length == 0 ? (
+          <button
+            className="text-white bg-[#5ECCB9] w-[100%] md:w-[50%] lg:w-[25%] xl:w-[25%]
+         py-2 rounded-md mb-10 mt-4"
+            onClick={() => setCurrent(1)}
+          >
+            Enter
+          </button>
+        ) : (
+          <button
+            className="text-white bg-[#5ECCB9] w-[100%] md:w-[50%] lg:w-[25%] xl:w-[25%]
+         py-2 rounded-md mb-10 mt-4"
+          >
+            Enter
+          </button>
+        )} */}
       </div>
     </div>
   )

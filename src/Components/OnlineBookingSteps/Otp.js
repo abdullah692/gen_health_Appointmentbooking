@@ -51,22 +51,7 @@ const Otp = ({ setCurrent, current }) => {
       setOtpInputs(['', '', '', ''])
       otpInputRefs.current[0].current.focus()
     }
-    // console.log({ dataToBeSend })
-    // debugger
-    // dispatch(getPatientVerification({ patientPhoneNo: phoneNum, sid, otp }))
-    //   .unwrap()
-    //   .then((x) => {
-    //     console.log(x, 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-    //     setLoading(false)
-        
-    //   })
-    //   .catch((e) => {
-    //     setLoading(false)
-    //     console.log(e?.response, 'error in otp component')
-    //     if (e?.response?.data?.message === 'OTP does not match') {
-         
-    //     }
-    //   })
+   
   }
 
   const handleOtpInputChange = (value, index) => {
@@ -79,21 +64,10 @@ const Otp = ({ setCurrent, current }) => {
       otpInputRefs.current[index + 1].current.focus()
     }
 
-    // Check if the current input is the last one and all inputs are filled
-    // if (index === otpInputs.length - 1 && updatedInputs.every(input => input !== "")) {
-    //     // Call your function here
-    //     handleSubmit();
-    // }
-  }
-
-  const handleRecivedOtp=()=>{
 
   }
 
-  // useEffect(() => {
-  //   handleRecivedOtp();
-  // }, [])
-
+  
   useEffect(() => {
 
     if (otpInputs.join('').length === 4) {
