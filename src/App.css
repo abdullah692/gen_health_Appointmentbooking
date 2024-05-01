@@ -1,0 +1,31 @@
+body {
+  background-color:#F8FBFF ;
+}
+
+.no-grid-col-4 {
+  grid-column: auto !important; /* Reset grid-column property */
+  margin-right: 1rem;
+  margin-top: 30px; /* Add any custom styling you need */
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(230, 225, 225); 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #abdad3; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #cbf2ec; 
+}
+

@@ -1,0 +1,56 @@
+stages: # List of stages for jobs, and their order of execution
+  - build
+  - deploy
+
+build-job-dev: # This job runs in the build stage, which runs first.
+  stage: build
+  tags:
+    - dev-gh
+  script:
+    - echo "Building application..."
+    - cp ~/booking/.prod.env .
+    - npm i
+    - CI=false npm run build:prod
+  artifacts:
+    paths:
+      - build/
+  only:
+    - dev
+
+deploy-job-dev: # This job runs in the deploy stage.
+  stage: deploy # It only runs when *both* jobs in the test stage complete successfully.
+  tags:
+    - dev-gh
+  dependencies:
+    - build-job-dev
+  environment: production
+  script:
+    - echo "Deploying application..."
+    - cp -r build/. /var/www/booking
+    - echo "Application successfully deployed."
+  only:
+    - dev
+
+# build-job-stg: # This job runs in the build stage, which runs first.
+#   stage: build
+#   tags:
+#     - stg-dev-api
+#   script:
+#     - echo "Building application..."
+#     - cp ~/booking/.prod.env .
+#     - npm i
+#     - CI=false npm run build:prod
+#   only:
+#     - dev
+
+# deploy-job-stg: # This job runs in the deploy stage.
+#   stage: deploy # It only runs when *both* jobs in the test stage complete successfully.
+#   tags:
+#     - stg-dev-api
+#   environment: production
+#   script:
+#     - echo "Deploying application..."
+#     - cp -r ./build/. /var/www/booking
+#     - echo "Application successfully deployed."
+#   only:
+#     - dev

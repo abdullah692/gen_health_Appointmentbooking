@@ -1,0 +1,88 @@
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.react-datepicker-wrapper{
+  width: 400px !important;
+}
+.ant-steps-item-icon {
+  display: none !important;
+}
+.ant-steps-item-wait::after
+{
+  display: none !important;
+}
+ .ant-steps-item-active::after
+{
+  display: none !important;
+}
+.ant-steps-item-finish::after
+{
+  display: none !important;
+}
+.ant-steps-item > .ant-steps-item-finish::before{
+  border-bottom: 2;
+  background-color: yellow !important;
+}
+
+.ant-steps-item-active::before
+{
+   background-color: #EBAB4B !important;
+}
+
+.ant-steps-item-process>.ant-steps-item-container>.ant-steps-item-content>.ant-steps-item-title
+{
+  color: #EBAB4B !important ;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* @media (max-width: 325px) {
+  .grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+} */
+
+
+.ant-picker-calendar-date-today
+{
+  background-color:rgb(152, 195, 233) !important ;
+  color:white;
+}
+.ant-picker-calendar-date-content{
+  border-color:#ae3c5e !important ;
+} 
+.ant-picker-cell-inner > .ant-picker-calendar-date
+{
+  background-color:#11152d !important ;
+
+}
+.ant-picker-cell-selected div {
+  border-radius: 50px;
+  background-color:#14226D !important ;
+} 
+
+.ant-modal-footer > button:nth-child(2){
+  background-color: #14226D !important;
+}
+/* 
+ant-picker-calendar-date-value{
+  background-color: aliceblue !important;
+} */
