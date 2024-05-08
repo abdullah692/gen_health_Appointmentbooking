@@ -90,8 +90,7 @@ function Stepss(props) {
               key={index}
               status={status}
               // disabled={(index > current || (current >= 3 && index < 3)) && !editApp}
-              // disabled={index > current}
-
+              disabled={index > current}
               title={
                 <span
                   className={`lg:text-[14px] xl:lg:text-[16px] lg:mx-5 xl:mx-2 ${status === 'finish' ? 'text-[#5ECCB9]' : ''}`}

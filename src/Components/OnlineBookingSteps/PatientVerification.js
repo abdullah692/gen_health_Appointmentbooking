@@ -33,7 +33,7 @@ function PatientVerification({ current, setCurrent }) {
   }
   
   const numVerification = (newValue) => {
-    dispatch(storePatientPhoneNo("+1"+newValue));
+    dispatch(storePatientPhoneNo("+92"+newValue));
   }
 
   //   const handleSubmit = (values) => {

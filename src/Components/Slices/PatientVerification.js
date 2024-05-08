@@ -234,7 +234,7 @@ export const submitAppointmentBooked = createAsyncThunk(
 export const postDependentAdd = createAsyncThunk(
   'Patient/postDependentAdd',
   async ({ dependent }, { rejectWithValue }) => {
-    debugger
+    
     console.log('datapostDpe', dependent)
     try {
       const apiRes = await axios.post(

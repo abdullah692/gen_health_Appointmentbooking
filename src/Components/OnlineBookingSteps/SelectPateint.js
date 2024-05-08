@@ -288,7 +288,7 @@ function SelectPateint({ setCurrent, current }) {
     });
   };
   const handleDependentFields = () => {
-    debugger
+console.log("addDependentfielkds",addDependent);
     dispatch(postDependentAdd({ dependent: addDependent }))
       .unwrap()
       .then((x) => {
@@ -318,10 +318,8 @@ function SelectPateint({ setCurrent, current }) {
 
           const result = getResultValue()
           console.log('updatedDataaaaaaaaaaaaaaaaaaaaa', result)
-          setPatientDependent((prevState) => [...prevState, result])
           // clearDependentFormFields();
           // form.setFieldsValue({ dependentName: '' });
-          setIsDependentModal(false)
           form1.setFieldsValue({
             name: '',
             gender: undefined,
@@ -330,6 +328,8 @@ function SelectPateint({ setCurrent, current }) {
           });
         }
       })
+      setPatientDependent((prevState) => [...prevState, addDependent])
+      setIsDependentModal(false)
 
     // setIsDependentModal(false)
     // setAddDependent({
@@ -356,6 +356,7 @@ function SelectPateint({ setCurrent, current }) {
           ...prevState,
           [field]: value,
         }))
+
       }
     } else if (field.includes('Dependent')) {
       setPatientDependent((prevState) => {
@@ -394,19 +395,7 @@ function SelectPateint({ setCurrent, current }) {
           [fieldValue]: value,
         }))
       }
-      // setPatientRelationInfo((prevState) => ({
-      //   ...prevState,
-      //   [fieldValue]: value,
-      // }))
-      // setPatientRelationInfo((prevState) => {
-      //   const updatedPatientRelationInfo = [...prevState]
-      //   const fieldValue = field.replace(/Child\d+$/, '') // Remove the number from the end of the field name
-      //   updatedPatientRelationInfo[index] = {
-      //     ...updatedPatientRelationInfo[index],
-      //     [fieldValue]: value,
-      //   }
-      //   return updatedPatientRelationInfo
-      // })
+     
     }
   }
 
@@ -749,7 +738,7 @@ debugger
         id: x?.data?.id ? x?.data?.id : '',
         name: x?.data?.name ? x?.data?.name : '',
         email: x?.data?.email ? x?.data?.email : '',
-        phone: x?.data?.phone ? x?.data?.phone : '+1' + PatientRelationNum,
+        phone: x?.data?.phone ? x?.data?.phone : '+92' + PatientRelationNum,
         gender: x?.data?.gender ? x?.data?.gender : '',
         maritalStatus: x?.data?.maritalStatus ? x?.data?.maritalStatus : '',
         dob: x?.data?.dob ? x?.data?.dob : '',
@@ -757,30 +746,31 @@ debugger
         isDeleted: false,
         isNew: true,
       }
+      console.log("vvvvvvvv",newPatientFields);
       const insurancePartner = {
         id: newPatientFields?.id,
         name: 'partner',
       }
 
       setDependentInsurance((preState) => [...preState, insurancePartner])
-      if (
-        Object.keys(x?.data).length != 0 &&
-        x?.data?.Dependents != undefined &&
-        x?.data?.Dependents?.length !== 0
-      ) {
-        const updatedData = x?.data?.Dependents?.map((item) => {
-          return {
-            ...item,
-            insurance_inherit_from: {
-              ...item.insurance_inherit_from,
-              name: 'partner',
-            },
-            key: uuidv4(),
-          }
-        })
-        console.log('cccccccccczzzzzzzzz', updatedData)
-        setPatientDependent((preState) => [...preState, ...updatedData])
-      }
+      // if (
+      //   Object.keys(x?.data).length != 0 &&
+      //   x?.data?.Dependents != undefined &&
+      //   x?.data?.Dependents?.length !== 0
+      // ) {
+      //   const updatedData = x?.data?.Dependents?.map((item) => {
+      //     return {
+      //       ...item,
+      //       insurance_inherit_from: {
+      //         ...item.insurance_inherit_from,
+      //         name: 'partner',
+      //       },
+      //       key: uuidv4(),
+      //     }
+      //   })
+      //   console.log('cccccccccczzzzzzzzz', updatedData)
+      //   setPatientDependent((preState) => [...preState, ...updatedData])
+      // }
 
       console.log('newPatientFields', newPatientFields)
       const updatedPatients = newPatientFields
@@ -908,27 +898,27 @@ debugger
       } else {
         const numExistsInParentPatient =
           Object.values(patient).find(
-            (value) => value === '+1' + PhoneNoVerification
+            (value) => value === '+92' + PhoneNoVerification
           ) !== undefined
 
         const numExistsInPatientPartner =
           Object.values(patientRelationInfo).find(
-            (value) => value === '+1' + PhoneNoVerification
+            (value) => value === '+92' + PhoneNoVerification
           ) !== undefined
 
       
         if (numExistsInParentPatient || numExistsInPatientPartner) {
           NotificationWithIcon('error', 'Number already exists')
         } else {
-          dispatch(getPatientOTP({ patientPhoneNo: PhoneNoVerification }))
-            .unwrap()
-            .then((x) => {
-              console.log('check itaaaaaaaaaa', x)
-              if (x) {
-                setOTPModal(true)
-                dispatch(storeSid(x.sid))
-              }
-            })
+          setOTPModal(true)
+          // dispatch(getPatientOTP({ patientPhoneNo: PhoneNoVerification }))
+          //   .unwrap()
+          //   .then((x) => {
+          //     console.log('check itaaaaaaaaaa', x)
+          //     if (x) {
+          //       dispatch(storeSid(x.sid))
+          //     }
+          //   })
         }
       }
       // setPhoneNoVerification('')
@@ -964,7 +954,7 @@ debugger
 
     console.log('mergeInsuranceTypes', mergeInsuranceTypes)
   }
-  console.log('Patient Insurance', dependentInsurance)
+  console.log('Patient Depentends', patientDependent)
 
  
   useEffect(() => {
@@ -1069,19 +1059,6 @@ debugger
             _for="parent"
           />
 
-          {/* {patientRelationInfo.map((patients, index) => {
-            console.log('patientsaaaaaaaaaaaaavvvvvvvvvvvvvvv', patients)
-            if (!patients.isDeleted) {
-              let isDisabled
-              if (editFor_ !== undefined) {
-                isDisabled =
-                  patients.phone !== editFor_ &&
-                  phoneNumbers.includes(patients.phone)
-              }
-
-              console.log('isDisabled', patients.phone)
-              return ( */}
-
           {Object.keys(patientRelationInfo).length > 0 && (
             <PatientInputFields
               // key={patients?.indexId}
@@ -1133,7 +1110,7 @@ debugger
               // if (!patients?.isShow === false || !('isShow' in patients)) {
                 return (
                   <PatientDependentFields
-                    index={patients?.id}
+                    index={index}
                     patient={patients}
                     isDisabled={isDisabled}
                     selected={selected}
@@ -1183,7 +1160,7 @@ debugger
                     onChange={handleInputChange}
                     value={PhoneNoVerification}
                     maxLength={10}
-                    addonBefore="+1"
+                    addonBefore="+92"
                     // initialValues={PhoneNoVerification}
                     placeholder="Phone Number"
                     className=" m-2 w-[100%]  border-2 border-slate-200  rounded-md"

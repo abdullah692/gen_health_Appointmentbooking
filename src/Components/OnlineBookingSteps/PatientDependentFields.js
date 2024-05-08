@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { Input, Button, Form, Select, DatePicker } from 'antd'
 import dayjs from 'dayjs'
 import { MdDelete } from 'react-icons/md'
@@ -25,9 +25,9 @@ function PatientDependentFields({
   const [selectedDate, setSelectedDate] = useState(null)
 
   console.log('index Dependent', index)
-  console.log('PATIENTDETAILS',patient)
-  console.log('dependentInsucrance',dependentInsurance)
-  
+  console.log('PATIENTDETAILS', patient)
+  console.log('dependentInsucrance', dependentInsurance)
+  const dobInt = patient?.dob ? dayjs(patient?.dob, 'MM/DD/YYYY') : undefined;
 
   const disabledDate = (current) => {
     // Disable future dates
@@ -39,7 +39,7 @@ function PatientDependentFields({
   }
 
 
-  
+
   const handleChangeInput = (field, value) => {
     //
     console.log('fieldsss', field)
@@ -60,7 +60,7 @@ function PatientDependentFields({
       setSelectedDate(dobValue)
     }
     // const values=value.target.value;
-      if (_for === 'dependent') {
+    if (_for === 'dependent') {
       handleFieldsChange(field, value, index)
     }
   }
@@ -104,10 +104,10 @@ function PatientDependentFields({
             ]}
           >
             <Input
-                name={nameProp}
-                onChange={(value) => handleChangeInput(`${nameProp}`, value)}
+              name={nameProp}
+              onChange={(value) => handleChangeInput(`${nameProp}`, value)}
               placeholder="Enter Full Name"
-                disabled={isDisabled}
+              disabled={isDisabled}
             />
           </Form.Item>
 
@@ -119,21 +119,20 @@ function PatientDependentFields({
             rules={[{ required: true, message: 'Please select gender!' }]}
           >
             <Select
-                name={genderProp}
+              name={genderProp}
               placeholder="Select Gender"
-                onChange={(value) => handleDropDownChange(`${genderProp}`, value)}
-                disabled={isDisabled}
+              onChange={(value) => handleDropDownChange(`${genderProp}`, value)}
+              disabled={isDisabled}
             >
               <Option value="male">Male</Option>
               <Option value="female">Female</Option>
               <Option value="other">Other</Option>
             </Select>
           </Form.Item>
-
           <Form.Item
             name={dobProp}
             format="MM/DD/YY"
-            initialValue={patient?.dob ? dayjs(patient?.dob, 'YYYY-MM-DD') : ''}
+            initialValue={patient?.dob ? dayjs(patient?.dob, 'YY-MM-DD') : ''}
             rules={[
               { required: true, message: 'Please Select Date Of Birth!' },
             ]}
@@ -142,9 +141,10 @@ function PatientDependentFields({
               format={'MM/DD/YY'}
               placeholder="Date Of Birth"
               className="w-full"
-                onChange={(value) => handleDropDownChange(`${dobProp}`, value)}
-                disabled={isDisabled}
+              onChange={(value) => handleDropDownChange(`${dobProp}`, value)}
+              disabled={isDisabled}
               disabledDate={disabledDate}
+          
             />
           </Form.Item>
 
@@ -152,7 +152,7 @@ function PatientDependentFields({
             name={insuranceProp}
             // label="Gender"
             initialValue={
-             patient?.insurance_inherit_from?.name || null
+              patient?.Insurance?.name || null
             }
             rules={[
               { required: true, message: 'Please select Insurance Type!' },
@@ -168,11 +168,11 @@ function PatientDependentFields({
             >
               {dependentInsurance?.map((ins) => {
                 return (
-                  <Option  value={JSON.stringify({
+                  <Option value={JSON.stringify({
                     id: ins?.id,
-                    name:ins?.name,
+                    name: ins?.name,
                   })}
-                     key={ins?.id}>
+                    key={ins?.id}>
                     {ins?.name}
                   </Option>
                 )
@@ -185,14 +185,13 @@ function PatientDependentFields({
           <button
             onClick={() => onDelete(patient)}
             type="button"
-              disabled={isDisabled}
+            disabled={isDisabled}
           >
             <span
-              className={`flex mt-2 ${
-                isDisabled
-                  ? 'text-gray-400'
-                  : 'text-gray-700 hover:text-red-600 '
-              }`}
+              className={`flex mt-2 ${isDisabled
+                ? 'text-gray-400'
+                : 'text-gray-700 hover:text-red-600 '
+                }`}
             >
               <MdDelete size={20} />
               Delete
