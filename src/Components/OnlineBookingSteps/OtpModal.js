@@ -137,7 +137,11 @@ const handleSubmit=()=>{
     NotificationWithIcon('success', 'OTP Verified Successfully!')
     setOTPModal(false)
     updatePhoneField()
-    handleAddPatient()
+    if(!otpCheckForPhone)
+      {
+
+        handleAddPatient()
+      }
 
     setOtpInputs(['', '', '', ''])
   }

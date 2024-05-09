@@ -836,19 +836,12 @@ debugger
     if (editPhoneVerification.length <= 0) {
       console.log('fill the field')
       // form.validateFields(['modalPhoneField'])
-      NotificationWithIcon('error', 'Please edit number to proceed')
+      NotificationWithIcon('error', 'Please add number to proceed')
     } else {
-      dispatch(getPatientOTP({ patientPhoneNo: editPhoneVerification }))
-        .unwrap()
-        .then((x) => {
-          console.log('check itaaaaaaaaaa', x)
-          if (x) {
-            setOtpCheckForPhone(true)
-            setOTPModal(true)
-            dispatch(storeSid(x.sid))
-          }
-        })
-      setEditPhoneModal(false)
+        setOtpCheckForPhone(true)
+        setEditPhoneModal(false)
+        setOtpCheckForPhone(true)
+        setOTPModal(true)
     }
   }
 
@@ -856,10 +849,11 @@ debugger
     console.log('patientssss', patient)
     console.log('editPhoneVerification', editPhoneVerification)
     console.log('selectEditPhoneNo', selectEditPhoneNo)
+    console.log("patientRelationInfo.phone",patientRelationInfo.phone);
     // debugger
     if (patient.phone === selectEditPhoneNo) {
       // Update the phone field in the patient object
-      const updatedPatient = { ...patient, phone: '+1' + editPhoneVerification }
+      const updatedPatient = { ...patient, phone: '+92' + editPhoneVerification }
       console.log('updatedPatient', updatedPatient)
       setPatient(updatedPatient)
       form.setFieldsValue({ phone: editPhoneVerification })
@@ -871,7 +865,7 @@ debugger
       // Update the phone field in the patient object
       const updatedPatient = {
         ...patientRelationInfo,
-        phone: '+1' + editPhoneVerification,
+        phone: '+92' + editPhoneVerification,
       }
       console.log('updatedPatient', updatedPatient)
       setPatientRelationInfo(updatedPatient)
@@ -1274,7 +1268,7 @@ debugger
           <OtpModal
             patientId={patient?.id}
             PhoneNoVerification={PhoneNoVerification}
-            editPhoneVerification={'+1' + editPhoneVerification}
+            editPhoneVerification={'+92' + editPhoneVerification}
             setEditPhoneVerification={setEditPhoneVerification}
             handleAddPatient={handleAddPatient}
             setOTPModal={setOTPModal}
@@ -1303,7 +1297,7 @@ debugger
                   onChange={handlePhoneChange}
                   className=" mb-10"
                   maxLength={10}
-                  addonBefore="+1"
+                  addonBefore="+92"
                   rules={[
                     { required: true, message: 'Phone number is required' },
                     { validator: validatePhoneNumber },

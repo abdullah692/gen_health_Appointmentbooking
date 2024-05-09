@@ -330,3 +330,31 @@ export const dataSource = [
   
 ];
 
+export const InsuranceTypes = [
+  {
+    id: '1',
+    insurance: 'Basic Dental ',
+  },
+  {
+    id: '2',
+    insurance: 'Comprehensive Dental ',
+  },
+  {
+    id: '3',
+    insurance: 'Orthodontic ',
+  },
+  {
+    id: '4',
+    insurance: 'Cosmetic Dental',
+  },
+  {
+    id: '5',
+    insurance: 'Implant Dental',
+  },
+  {
+    id: '6',
+    insurance: 'Supplemental Dental ',
+  },
+
+  
+]

@@ -4,6 +4,7 @@ import { MdDelete } from 'react-icons/md'
 import dayjs from 'dayjs'
 import { useSelector } from 'react-redux'
 import { AiOutlineEdit } from 'react-icons/ai'
+import {InsuranceTypes} from './data'
 
 function PatientInputFields({
   patient,
@@ -29,9 +30,9 @@ function PatientInputFields({
 }) {
   const { Option } = Select
   const dateFormat = 'YYYY/MM/DD'
-  const InsuranceType = useSelector(
-    (state) => state?.PatientReducer?.insuranceTypes
-  )
+  // const InsuranceType = useSelector(
+  //   (state) => state?.PatientReducer?.insuranceTypes
+  // )
   const patientRelations = useSelector(
     (state) => state?.PatientReducer?.patientRelations
   )
@@ -50,6 +51,8 @@ function PatientInputFields({
   const phoneNum = useSelector(
     (state) => state?.VerifyPatientPhoneNo?.patientPhoneNo
   )
+
+  console.log(phoneNum,"storedphonneno");
   const [selectedDate, setSelectedDate] = useState(null)
 
   // const PatientName = () => {
@@ -353,15 +356,11 @@ function PatientInputFields({
               }
               disabled={isDisabled}
             >
-              {InsuranceType?.map((ins) => {
+              {InsuranceTypes?.map((ins) => {
                 return (
-                  <Option  value={JSON.stringify({
-                    id: ins?.id ,
-                    type: ins?.type,
-                    //   disabled: isDisabled,
-                  })} key={ins?.id}>
-                    {ins?.type}
-                  </Option>
+                <Option key={ins.id}>
+                  {ins.insurance}
+                </Option>
                 )
               })}
             </Select>
