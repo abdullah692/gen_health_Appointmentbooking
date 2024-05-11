@@ -19,24 +19,26 @@ const OtpModal = ({
   editPhoneVerification,
   handleAddPatient,
   setOTPModal,
+  otpModal,
   otpCheckForPhone,
+  otpGen,
   setOtpCheckForPhone,
   updatePhoneField,
   setEditPhoneVerification,
   setSelected,
-  selected  
+  selected
 }) => {
   const dispatch = useDispatch()
   const [form] = Form.useForm()
   // const dataToBeSend = useSelector(state => ({ ...state.Patient.patientSearchData, sid: state.Patient.sid }));
   const sid = useSelector((state) => state?.PatientReducer?.sid)
   console.log('sidddddddddd', sid)
+  console.log("otpModalaaa", otpModal);
   //   const phoneNum = useSelector(
   //     (state) => state?.VerifyPatientPhoneNo?.patientPhoneNo
   //   )
   let otpGet = '';
   const [loading, setLoading] = useState(false)
-  const [otp, setOtp] = useState('');
   const [otpInputs, setOtpInputs] = useState(['', '', '', ''])
   const otpInputRefs = useRef([
     React.createRef(),
@@ -53,106 +55,102 @@ const OtpModal = ({
   //     }
   //   }
 
-//   const handleSubmit = () => {
-//     setLoading(true)
-//     const otp = otpInputs.join('')
-//     console.log(otp, 'Otttttttttttttppppppp')
-//     // debugger
-//     dispatch(storeOTP(otp))
-//     // console.log({ dataToBeSend })
-// debugger
-//     //For Add New Patient
-//     if (otpCheckForPhone == false) {
-//       debugger
-//       dispatch(
-//         fetchPatientForRelation({
-//           patientPhoneNo: "+1"+PhoneNoVerification,
-//           sid,
-//           otp,
-//           patientId
-//         })
-//       )
-//         .unwrap()
-//         .then((x) => {
-//           console.log(x, 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-//           setLoading(false)
-//           dispatch(storeAddPatientOtp(x))
-//           handleAddPatient(x)
-//           setOtpInputs(['', '', '', ''])
-//           setOTPModal(false)
-//           setOtpCheckForPhone(false)
-//           // setCurrent(2)
-//         })
-//         .catch((e) => {
-//           setLoading(false)
-//           // console.log(e.response.data.message, 'error in otp component')
-//           if (e?.response?.data?.message === 'OTP does not match') {
-//             NotificationWithIcon('error', 'Wrong OTP')
-//             setOtpInputs(['', '', '', ''])
-//             otpInputRefs.current[0].current.focus()
-//           }
-//         })
-//     } else {
-//       //For Edit phone number
-//       dispatch(
-//         fetchPatientForRelation({
-//           patientPhoneNo: editPhoneVerification,
-//           sid,
-//           otp,
-//           patientId
-//         })
-//       ).unwrap()
-//         .then((x) => {
-//           console.log(x, 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-//           setLoading(false)
-//           dispatch(storeAddPatientOtp(x))
-//           //   handleAddPatient(x)
-//           updatePhoneField()
-//           setOtpInputs(['', '', '', ''])
-//           setOTPModal(false)
-//           setOtpCheckForPhone(false)
-//           setEditPhoneVerification('')
-//         //   setSelected(selected);
-//           // setCurrent(2)
-//         })
-//         .catch((e) => {
-//           setLoading(false)
-//           console.log(e?.response.data?.message, 'error in otp component')
-//           if (e?.response?.data?.message === 'OTP does not match') {
-//             NotificationWithIcon('error', 'Wrong OTP')
-//             setOtpInputs(['', '', '', ''])
-//             otpInputRefs.current[0].current.focus()
-//           }
-//         })
-//     }
-//   }
+  //   const handleSubmit = () => {
+  //     setLoading(true)
+  //     const otp = otpInputs.join('')
+  //     console.log(otp, 'Otttttttttttttppppppp')
+  //     // debugger
+  //     dispatch(storeOTP(otp))
+  //     // console.log({ dataToBeSend })
+  // debugger
+  //     //For Add New Patient
+  //     if (otpCheckForPhone == false) {
+  //       debugger
+  //       dispatch(
+  //         fetchPatientForRelation({
+  //           patientPhoneNo: "+1"+PhoneNoVerification,
+  //           sid,
+  //           otp,
+  //           patientId
+  //         })
+  //       )
+  //         .unwrap()
+  //         .then((x) => {
+  //           console.log(x, 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+  //           setLoading(false)
+  //           dispatch(storeAddPatientOtp(x))
+  //           handleAddPatient(x)
+  //           setOtpInputs(['', '', '', ''])
+  //           setOTPModal(false)
+  //           setOtpCheckForPhone(false)
+  //           // setCurrent(2)
+  //         })
+  //         .catch((e) => {
+  //           setLoading(false)
+  //           // console.log(e.response.data.message, 'error in otp component')
+  //           if (e?.response?.data?.message === 'OTP does not match') {
+  //             NotificationWithIcon('error', 'Wrong OTP')
+  //             setOtpInputs(['', '', '', ''])
+  //             otpInputRefs.current[0].current.focus()
+  //           }
+  //         })
+  //     } else {
+  //       //For Edit phone number
+  //       dispatch(
+  //         fetchPatientForRelation({
+  //           patientPhoneNo: editPhoneVerification,
+  //           sid,
+  //           otp,
+  //           patientId
+  //         })
+  //       ).unwrap()
+  //         .then((x) => {
+  //           console.log(x, 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+  //           setLoading(false)
+  //           dispatch(storeAddPatientOtp(x))
+  //           //   handleAddPatient(x)
+  //           updatePhoneField()
+  //           setOtpInputs(['', '', '', ''])
+  //           setOTPModal(false)
+  //           setOtpCheckForPhone(false)
+  //           setEditPhoneVerification('')
+  //         //   setSelected(selected);
+  //           // setCurrent(2)
+  //         })
+  //         .catch((e) => {
+  //           setLoading(false)
+  //           console.log(e?.response.data?.message, 'error in otp component')
+  //           if (e?.response?.data?.message === 'OTP does not match') {
+  //             NotificationWithIcon('error', 'Wrong OTP')
+  //             setOtpInputs(['', '', '', ''])
+  //             otpInputRefs.current[0].current.focus()
+  //           }
+  //         })
+  //     }
+  //   }
 
-const handleSubmit=()=>{
-  setLoading(true)
-  const otpInput = otpInputs.join('')
-  console.log(otpInput, 'Otttttttttttttppppppp')
-  // dispatch(storeOTP(otp))
-  if(otpInput == otp)
-  {
-    NotificationWithIcon('success', 'OTP Verified Successfully!')
-    setOTPModal(false)
-    updatePhoneField()
-    if(!otpCheckForPhone)
-      {
+  const handleSubmit = () => {
+    setLoading(true)
+    const otpInput = otpInputs.join('')
+    console.log(otpInput, 'Otttttttttttttppppppp')
+    // dispatch(storeOTP(otp))
+    if (otpInput == otpGen) {
+      NotificationWithIcon('success', 'OTP Verified Successfully!')
+      setOTPModal(false)
+      updatePhoneField()
+      if (!otpCheckForPhone) {
 
         handleAddPatient()
       }
 
-    setOtpInputs(['', '', '', ''])
+      setOtpInputs(['', '', '', ''])
+    }
+    else {
+      NotificationWithIcon('error', 'Wrong OTP')
+      setOtpInputs(['', '', '', ''])
+      otpInputRefs.current[0].current.focus()
+    }
   }
-  else{
-    NotificationWithIcon('error', 'Wrong OTP')
-    setOtpInputs(['', '', '', ''])
-    otpInputRefs.current[0].current.focus()
-  }
- 
-
-}
 
 
   const handleOtpInputChange = (value, index) => {
@@ -166,27 +164,31 @@ const handleSubmit=()=>{
     }
   }
 
-  function generateOTP() {
-  let otp = '';
-    
-    for (var i = 0; i < 4; i++) {
-      otp += Math.floor(Math.random() * 10); // Generate a random digit between 0 and 9
-    }
-    // setOtp(otp)
-    return otp;
-  }
-  
+  // function generateOTP() {
+  //   let otp = '';
+
+  //   for (var i = 0; i < 4; i++) {
+  //     otp += Math.floor(Math.random() * 10); // Generate a random digit between 0 and 9
+  //   }
+  //   // setOtp(otp)
+  //   return otp;
+  // }
+
   // Check if the current input is the last one and all inputs are filled
   // if (index === otpInputs.length - 1 && updatedInputs.every(input => input !== "")) {
   //     // Call your function here
   //     handleSubmit();
   // }
 
-  useEffect(() => {
-    const generatedOTP = generateOTP(); // Generate OTP once
-    setOtp(generatedOTP); // Store the OTP in state
-  }, []);
- 
+  // useEffect(() => {
+    
+  //     const generatedOTP = generateOTP(); // Generate OTP once when modal is open
+  //     setOtp(generatedOTP); // Store the OTP in state
+    
+  // }, [otpModal]);
+
+
+
   useEffect(() => {
     if (otpInputs.join('').length === 4) {
       handleSubmit()
@@ -205,11 +207,11 @@ const handleSubmit=()=>{
           registered number
         </p>
         <p className="text-center text-gray-500 ">
-          Please Enter <span className="font-bold">{otp} OTP</span> in below box
+          Please Enter <span className="font-bold">{otpGen} OTP</span> in below box
         </p>
       </div>
       <div className="w-full mt-3 flex justify-center">
-        <Form form={form} onFinish={() => {}}>
+        <Form form={form} onFinish={() => { }}>
           <Form.Item
             rules={[
               {

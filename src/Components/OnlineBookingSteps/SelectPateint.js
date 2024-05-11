@@ -82,6 +82,8 @@ function SelectPateint({ setCurrent, current }) {
   const [editPhoneVerification, setEditPhoneVerification] = useState('')
   const [loading, setLoading] = useState(false)
   const [isDependentModal, setIsDependentModal] = useState(false)
+  const [otpGen, setOtp] = useState('');
+
 
   console.log('setCureent Select Patient', current)
   const [form] = Form.useForm()
@@ -964,6 +966,22 @@ debugger
     addInsurance()
   }, [])
 
+
+  useEffect(() => {
+    if (otpModal) {
+      const generatedOTP = generateOTP(); // Generate OTP once when modal is open
+      setOtp(generatedOTP); // Store the OTP in state
+    }
+  }, [otpModal]);
+
+  function generateOTP() {
+    let otp = '';
+    for (var i = 0; i < 4; i++) {
+      otp += Math.floor(Math.random() * 10); // Generate a random digit between 0 and 9
+    }
+    return otp;
+  }
+
   useEffect(()=>{
     if(appointmentsBooked?.length > 0 && addAnotherApp == "Add Appintment"){
       let booked = [];
@@ -1272,6 +1290,8 @@ debugger
             setEditPhoneVerification={setEditPhoneVerification}
             handleAddPatient={handleAddPatient}
             setOTPModal={setOTPModal}
+            otpModal={otpModal}
+            otpGen={otpGen}
             setOtpCheckForPhone={setOtpCheckForPhone}
             otpCheckForPhone={otpCheckForPhone}
             updatePhoneField={updatePhoneField}
