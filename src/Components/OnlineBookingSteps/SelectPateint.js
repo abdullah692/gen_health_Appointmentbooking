@@ -290,7 +290,9 @@ function SelectPateint({ setCurrent, current }) {
     });
   };
   const handleDependentFields = () => {
-console.log("addDependentfielkds",addDependent);
+
+    addDependent.id=generateId()
+    console.log("addDependentfielkds",addDependent);
     dispatch(postDependentAdd({ dependent: addDependent }))
       .unwrap()
       .then((x) => {
@@ -434,58 +436,51 @@ console.log("addDependentfielkds",addDependent);
     // Check if ID belongs to a patient in the patient state
     console.log('Idsssssssssssss', patient)
     debugger
-    dispatch(deletePartner({ id: patient.id }))
-      .unwrap()
-      .then((x) => {
-        console.log(x, 'xxxxxxxxxxxxxxxxxxxxxx')
-        if (x.message === 'partner deleted and depenedent insurance updated' || x.message == 'Partner does not exist') {
-          const idToMatch = patientRelationInfo?.id
-          const deleteDependentOfPartner = patientDependent.filter((obj) => {
-           return(
+    // dispatch(deletePartner({ id: patient.id }))
+    //   .unwrap()
+    //   .then((x) => {
+    //     console.log(x, 'xxxxxxxxxxxxxxxxxxxxxx')
+    //     if (x.message === 'partner deleted and depenedent insurance updated' || x.message == 'Partner does not exist') {
+    //       const idToMatch = patientRelationInfo?.id
+    //       const deleteDependentOfPartner = patientDependent.filter((obj) => {
+    //        return(
 
-             obj.created_by !== idToMatch
-           )
-          })
+    //          obj.created_by !== idToMatch
+    //        )
+    //       })
           // const deleteDependentOfPartner = patientDependent.map((obj) => {
           //   if (obj.created_by === idToMatch) {
           //     return { ...obj, isShow: false }
           //   }
           //   return obj
           // })
-          console.log('updatedData', deleteDependentOfPartner)
-          setPatientDependent(deleteDependentOfPartner)
-          setPatientRelationInfo({})
-          const filterPartnerFromInsurance=dependentInsurance.filter((val)=> val.id !== idToMatch)
-          setDependentInsurance(filterPartnerFromInsurance);
-        }
-      })
+
+      //   }
+      // })
+      // console.log('updatedData', deleteDependentOfPartner)
+      // setPatientDependent(deleteDependentOfPartner)
+      setPatientRelationInfo({})
+      // const filterPartnerFromInsurance=dependentInsurance.filter((val)=> val.id !== idToMatch)
+      // setDependentInsurance(filterPartnerFromInsurance);
   }
 
   const handleDeleteDependent = (patient) => {
     // Check if ID belongs to a patient in the patient state
     console.log('Idsssssssssssss', patient)
 
-    dispatch(deleteDependentPatient({ id: patient?.id }))
-      .unwrap()
-      .then((x) => {
-        console.log('xxxxxxaaa',x);
-        if(x?.message === "Dependent deleted")
-        {
-            const updateDependents= patientDependent.filter((val)=> val?.id != patient?.id);
-            console.log('updateDependents',updateDependents);
-            setPatientDependent(updateDependents);
-        }
-    })
-
-    // const deleteDependentPatients = patientDependent?.map((dependent, i) => {
-    //   if (dependent?.key === patient?.key)
-    //     return { ...dependent, isDeleted: true }
-    //   return dependent
+    const updateDependents= patientDependent.filter((val)=> val?.id != patient?.id);
+    console.log('updateDependents',updateDependents);
+    setPatientDependent(updateDependents);
+    // dispatch(deleteDependentPatient({ id: patient?.id }))
+    //   .unwrap()
+    //   .then((x) => {
+    //     console.log('xxxxxxaaa',x);
+    //     if(x?.message === "Dependent deleted")
+    //     {
+          
+    //     }
     // })
-    // console.log('deleteDependentPatients', deleteDependentPatients)
-    // // // console.log('updatedPatientsWithIndex',updatedPatientsWithIndex);
-    // setPatientDependent(deleteDependentPatients)
-    // setSelectedPatientIndex('')
+
   }
 
   const handleInputChange = (e) => {

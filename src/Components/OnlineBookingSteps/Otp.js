@@ -7,6 +7,7 @@ import { NotificationWithIcon } from '../../utils/Notification'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Otp = ({ setCurrent, current }) => {
+  
   const dispatch = useDispatch()
   const [form] = Form.useForm()
   // const dataToBeSend = useSelector(state => ({ ...state.Patient.patientSearchData, sid: state.Patient.sid }));
@@ -19,6 +20,7 @@ const Otp = ({ setCurrent, current }) => {
   console.log('phoneNumaaaaaaaa', phoneNum);
   const [loading, setLoading] = useState(false)
   const [otpInputs, setOtpInputs] = useState(['', '', '', ''])
+  const [otpGen, setOtp] = useState('');
   const otpInputRefs = useRef([
     React.createRef(),
     React.createRef(),
@@ -36,22 +38,21 @@ const Otp = ({ setCurrent, current }) => {
 
   const handleSubmit = () => {
     setLoading(true)
-    const otp = otpInputs.join('')
+    const otp= otpInputs.join('')
     console.log(otp, 'Otttttttttttttppppppp')
     dispatch(storeOTP(otp))
-    if(otp =="1234")
-    {
+    if (otp == otpGen) {
       NotificationWithIcon('success', 'OTP Verified Successfully!')
       setTimeout(() => {
         setCurrent(2)
-      }, 1000);
+      }, 500);
     }
-    else{
+    else {
       NotificationWithIcon('error', 'Wrong OTP')
       setOtpInputs(['', '', '', ''])
       otpInputRefs.current[0].current.focus()
     }
-   
+
   }
 
   const handleOtpInputChange = (value, index) => {
@@ -64,10 +65,23 @@ const Otp = ({ setCurrent, current }) => {
       otpInputRefs.current[index + 1].current.focus()
     }
 
-
   }
 
-  
+
+  function generateOTP() {
+    let otp = ''
+    for (var i = 0; i < 4; i++) {
+      otp += Math.floor(Math.random() * 10); // Generate a random digit between 0 and 9
+    }
+    return otp;
+  }
+
+
+  useEffect(() => {
+    const generatedOTP = generateOTP(); // Generate OTP once when modal is open
+    setOtp(generatedOTP); // Store the OTP in state
+  }, []);
+
   useEffect(() => {
 
     if (otpInputs.join('').length === 4) {
@@ -87,7 +101,7 @@ const Otp = ({ setCurrent, current }) => {
           registered number
         </p>
         <p className="text-center text-gray-500 ">
-          Please Enter <span className="font-bold">1234 OTP</span> in below box
+          Please Enter <span className="font-bold">{otpGen} OTP</span> in below box
         </p>
       </div>
       <div className="w-full mt-3 flex justify-center">
