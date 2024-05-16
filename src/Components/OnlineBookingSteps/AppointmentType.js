@@ -39,10 +39,20 @@ function AppointmentType({ setCurrent, current }) {
 
   const { id } = useParams()
 
-  const filteredAppointmentTypes = appointmentTypes?.filter((item) =>
-    item?.type?.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  // const filteredAppointmentTypes = appointmentTypes?.filter((item) =>
+  //   item?.type?.toLowerCase().includes(searchTerm.toLowerCase())
+  // )
 
+  const filteredAppointmentTypes=[
+    {
+      id:1,
+      type:"Dental Checkup"
+    },
+    {
+      id:2,
+      type:"root cancal"
+    },
+  ]
   const handleAppointment = (appointment) => {
     console.log('dsadsadsads', appointment)
     dispatch(storeAppointmentType(appointment))

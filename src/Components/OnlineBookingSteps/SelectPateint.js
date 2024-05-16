@@ -16,7 +16,7 @@ import {
   getPatientOTP,
   getPatientRelations,
   getPatientVerification,
-  patientWithDependentsData,
+  patientsWithDependentsData,
   postDependentAdd,
   setPatientInfo,
   storeAddAnotherApp,
@@ -168,15 +168,23 @@ function SelectPateint({ setCurrent, current }) {
   console.log('parentPatientData', parentPatientData)
   console.log('apmntFor_', apmntFor_)
 
-  console.log('selectedaaaaaaa',selected)
+  console.log('selectedaaaaaaa', selected)
   console.log('addPatientRes', addPatientRes)
 
+  
+  const generateId = () => {
+    const id = Math.floor(Math.random() * 1000000)
+      .toString()
+      .padStart(6, '0')
+    return id
+  }
   console.log('addAnotherApp', addAnotherApp)
   console.log('patientDatayyyyyyyyyyyyyy', patientData)
   console.log('patientRelationData', patientRelationData)
   const { id } = useParams()
   console.log('dp_id', id)
   const [patient, setPatient] = useState({
+    indexId: generateId(),
     id: patientData ? patientData.id : '',
     name: parentPatientData?.name ? parentPatientData?.name : patientData?.name,
     email: parentPatientData.email
@@ -185,8 +193,8 @@ function SelectPateint({ setCurrent, current }) {
     phone: parentPatientData?.phone
       ? parentPatientData?.phone
       : patientData?.phone
-      ? patientData?.phone
-      : phoneNum,
+        ? patientData?.phone
+        : phoneNum,
     gender: parentPatientData.gender
       ? parentPatientData.gender
       : patientData?.gender,
@@ -205,16 +213,16 @@ function SelectPateint({ setCurrent, current }) {
     childPatientData?.length !== 0
       ? childPatientData
       : patientPartnerData
-      ? patientPartnerData
-      : {}
+        ? patientPartnerData
+        : {}
   )
 
   const [patientDependent, setPatientDependent] = useState(
     patientDependents.length != 0
       ? patientDependents
       : patientDependentsData
-      ? patientDependentsData
-      : []
+        ? patientDependentsData
+        : []
   )
 
   const [dependentInsurance, setDependentInsurance] = useState([])
@@ -291,8 +299,8 @@ function SelectPateint({ setCurrent, current }) {
   };
   const handleDependentFields = () => {
 
-    addDependent.id=generateId()
-    console.log("addDependentfielkds",addDependent);
+    addDependent.id = generateId()
+    console.log("addDependentfielkds", addDependent);
     dispatch(postDependentAdd({ dependent: addDependent }))
       .unwrap()
       .then((x) => {
@@ -332,8 +340,8 @@ function SelectPateint({ setCurrent, current }) {
           });
         }
       })
-      setPatientDependent((prevState) => [...prevState, addDependent])
-      setIsDependentModal(false)
+    setPatientDependent((prevState) => [...prevState, addDependent])
+    setIsDependentModal(false)
 
     // setIsDependentModal(false)
     // setAddDependent({
@@ -399,7 +407,7 @@ function SelectPateint({ setCurrent, current }) {
           [fieldValue]: value,
         }))
       }
-     
+
     }
   }
 
@@ -448,28 +456,28 @@ function SelectPateint({ setCurrent, current }) {
     //          obj.created_by !== idToMatch
     //        )
     //       })
-          // const deleteDependentOfPartner = patientDependent.map((obj) => {
-          //   if (obj.created_by === idToMatch) {
-          //     return { ...obj, isShow: false }
-          //   }
-          //   return obj
-          // })
+    // const deleteDependentOfPartner = patientDependent.map((obj) => {
+    //   if (obj.created_by === idToMatch) {
+    //     return { ...obj, isShow: false }
+    //   }
+    //   return obj
+    // })
 
-      //   }
-      // })
-      // console.log('updatedData', deleteDependentOfPartner)
-      // setPatientDependent(deleteDependentOfPartner)
-      setPatientRelationInfo({})
-      // const filterPartnerFromInsurance=dependentInsurance.filter((val)=> val.id !== idToMatch)
-      // setDependentInsurance(filterPartnerFromInsurance);
+    //   }
+    // })
+    // console.log('updatedData', deleteDependentOfPartner)
+    // setPatientDependent(deleteDependentOfPartner)
+    setPatientRelationInfo({})
+    // const filterPartnerFromInsurance=dependentInsurance.filter((val)=> val.id !== idToMatch)
+    // setDependentInsurance(filterPartnerFromInsurance);
   }
 
   const handleDeleteDependent = (patient) => {
     // Check if ID belongs to a patient in the patient state
     console.log('Idsssssssssssss', patient)
 
-    const updateDependents= patientDependent.filter((val)=> val?.id != patient?.id);
-    console.log('updateDependents',updateDependents);
+    const updateDependents = patientDependent.filter((val) => val?.id != patient?.id);
+    console.log('updateDependents', updateDependents);
     setPatientDependent(updateDependents);
     // dispatch(deleteDependentPatient({ id: patient?.id }))
     //   .unwrap()
@@ -477,7 +485,7 @@ function SelectPateint({ setCurrent, current }) {
     //     console.log('xxxxxxaaa',x);
     //     if(x?.message === "Dependent deleted")
     //     {
-          
+
     //     }
     // })
 
@@ -491,12 +499,6 @@ function SelectPateint({ setCurrent, current }) {
     dispatch(storeVerifyPatientRelationNo(newValue))
   }
 
-  const generateId = () => {
-    const id = Math.floor(Math.random() * 1000000)
-      .toString()
-      .padStart(6, '0')
-    return id
-  }
 
   function getPatientData(selected) {
     let key
@@ -515,122 +517,125 @@ function SelectPateint({ setCurrent, current }) {
         }
       }
 
-    return key
-  }
+      return key
+    }
   }
 
   const handleSubmit = (saveAction) => async (values) => {
     console.log('The values are', values)
     console.log('SaveAction', saveAction)
-debugger
+    debugger
     // if (!selectedRadio) {
     //   NotificationWithIcon('error', 'Please select a radio button');
     // // } else {
     //   const radioButton = document.querySelector(`input[name="option"][value="${selected}"]`);
-      
-      if (selected == " ") {
-        NotificationWithIcon('error', 'Please add and select patient to book appointment');
+
+    if (selected == " ") {
+      NotificationWithIcon('error', 'Please add and select patient to book appointment');
       // } else if (selected === selectedRadio) {
       //   NotificationWithIcon('error', 'Select any patient to book an appointment');
-      }
-      else
-      {
-                // dispatch(storeSelectedRadio(appBookedRadio))
-                // setCurrent(3)
-                  if (saveAction === 'save') {
-                    console.log('patientRelationssssss', patientRelationInfo)
-                    console.log('patientssss', patient)
-                    debugger
-                    let key;
-                    if (selected === 'radio') {
-                      key = patient?.id
-                    } else if (selected === 'radioChild') {
-                      key = patientRelationInfo?.id
-                    } else if (selected.startsWith('radioDependent')) {
-                      const index = parseInt(selected.substring("radioDependent".length), 10);
-                      key=index
-                    }
-                    if(key != undefined)
-                    {
-            
-                      console.log(key, 'apmntForccccccccccccccccccccccc')
-                      const uniqueAppointmentBooked = appointmentBookInfo.find(
-                        (app) => app?._for == key
-                      )
-                      console.log('uniqueAppointmentBooked', uniqueAppointmentBooked)
-              
-                      if (
-                        editFor_ == undefined &&
-                        appointmentBookInfo.length !== 0 &&
-                        uniqueAppointmentBooked !== undefined
-                      ) {
-                        NotificationWithIcon(
-                          'error',
-                          'You already booked the appointment for this patient'
-                        )
-                      } else {
-                        setLoading(true)
-                        const patientRelationState = patientDependent.filter((val) => {
-                          if (!val?.isDeleted && !val?.isNew) return val
-                          else if (!val?.isDeleted && val?.isNew) return val
-                          else if (val?.isDeleted && val?.id) return val
-                        })
-              
-                        console.log('filteredDatasssssssssss', patientRelationState)
-                        // console.log('filterIdData',filterIdData);
-                        // setPatient(values)
-                        // getPatientData(values);
-              
-                        console.log(selected, 'apmntFor')
-              
-                        dispatch(storeSelectedRadio(appBookedRadio))
-                        dispatch(storeAppFor_({ apmntFor: key }))
-                        dispatch(storeParentPatientData({ patient }))
-                        dispatch(storeChildPatientRelationData(patientRelationInfo))
-                        dispatch(storePatientDependentData(patientDependent))
-                        
+    }
+    else {
+      // dispatch(storeSelectedRadio(appBookedRadio))
+      // setCurrent(3)
+      if (saveAction === 'save') {
+        console.log('patientRelationssssss', patientRelationInfo)
+        console.log('patientssss', patient)
+        debugger
+        let key;
+        if (selected === 'radio') {
+          key = patient?.indexId
+        } else if (selected === 'radioChild') {
+          key = patientRelationInfo?.indexId
+        } else if (selected.startsWith('radioDependent')) {
+          const index = parseInt(selected.substring("radioDependent".length), 10);
+          key = index
+        }
+        if (key != undefined) {
 
-              
-                        const patientInfo = transformPatientData(
-                          patient,
-                          patientRelationInfo,
-                          patientDependent,
-                          id
-                        )
-              
-                        console.log('finalSubmitPatientInfo', patientInfo)
-                        if (patientInfo) {
-                          dispatch(setPatientInfo(patientInfo))
-                          dispatch(patientWithDependentsData(patientInfo))
-                            .unwrap()
-                            .then((x) => {
-                              console.log('xxxxxxxxxxxxxxxx', x)
-                              if (x.message === 'patient data added') {
-                                setLoading(false)
-                                dispatch(storeAddAnotherApp(''));
-                                setCurrent(3)
-                              }
-                            })
-                        }
-                      }
-                    }
-                  }
+          console.log(key, 'apmntForccccccccccccccccccccccc')
+          const uniqueAppointmentBooked = appointmentBookInfo.find(
+            (app) => app?._for == key
+          )
+          console.log('uniqueAppointmentBooked', uniqueAppointmentBooked)
+
+          if (
+            editFor_ == undefined &&
+            appointmentBookInfo.length !== 0 &&
+            uniqueAppointmentBooked !== undefined
+          ) {
+            NotificationWithIcon(
+              'error',
+              'You already booked the appointment for this patient'
+            )
+          } else {
+            setLoading(true)
+            const patientRelationState = patientDependent.filter((val) => {
+              if (!val?.isDeleted && !val?.isNew) return val
+              else if (!val?.isDeleted && val?.isNew) return val
+              else if (val?.isDeleted && val?.id) return val
+            })
+
+            console.log('filteredDatasssssssssss', patientRelationState)
+            // console.log('filterIdData',filterIdData);
+            // setPatient(values)
+            // getPatientData(values);
+
+            console.log(selected, 'apmntFor')
+
+            dispatch(storeSelectedRadio(appBookedRadio))
+            dispatch(storeAppFor_({ apmntFor: key }))
+            dispatch(storeParentPatientData({ patient }))
+            dispatch(storeChildPatientRelationData(patientRelationInfo))
+            dispatch(storePatientDependentData(patientDependent))
+
+
+
+            const patientInfo = transformPatientData(
+              patient,
+              patientRelationInfo,
+              patientDependent,
+              id
+            )
+
+            console.log('finalSubmitPatientInfo', patientInfo)
+            if (patientInfo) {
+              dispatch(setPatientInfo(patientInfo));
+              dispatch(patientsWithDependentsData(patientInfo))
+              .unwrap()
+                .then((x) => {
+                  console.log("zzzzzz",x);
+              if (x.message === 'Info Added Successfully') {
+                setLoading(false)
+                dispatch(storeAddAnotherApp(''));
+                setCurrent(3)
+              }
+              // dispatch(patientWithDependentsData(patientInfo))
+              //   .unwrap()
+              //   .then((x) => {
+              //     console.log('xxxxxxxxxxxxxxxx', x)
+                 
+                })
+            }
+          }
+        }
       }
     }
+  }
 
-    // if (selected === selectedRadio) {
-    //   NotificationWithIcon('error', 'Select any patient to book appointment')
-    // } 
-    
-    // else {
-    //     }
-    //     // const key=getPatientData(selected);
+  // if (selected === selectedRadio) {
+  //   NotificationWithIcon('error', 'Select any patient to book appointment')
+  // } 
 
-          // await setCurrent(3)
-        // }
-      // }
-        console.log('patientRelationssssss', patientRelationInfo)
-        // setCurrent(2)
+  // else {
+  //     }
+  //     // const key=getPatientData(selected);
+
+  // await setCurrent(3)
+  // }
+  // }
+  console.log('patientRelationssssss', patientRelationInfo)
+  // setCurrent(2)
   //     }
   //   }
   // }
@@ -648,20 +653,20 @@ debugger
     const patientPartner =
       patientRelation && Object.keys(patientRelation).length > 0
         ? {
-            id: patientRelation.id ? patientRelation.id : '',
-            name: patientRelation.name,
-            email: patientRelation.email,
-            dob: dayjs(patientRelation.dob).format('MM/DD/YY'),
-            gender: patientRelation.gender,
-            phone: patientRelation.phone,
-            maritalStatus: patientRelation.maritalStatus,
-            dp_url: patientRelation.dpUrl,
-            isDeleted: patientRelation.isDeleted
-              ? patientRelation.isDeleted
-              : false,
-            ins_id: patientRelation?.Insurance?.id,
-            key: patientRelation.id,
-          }
+          id: patientRelation.id ? patientRelation.id : '',
+          name: patientRelation.name,
+          email: patientRelation.email,
+          dob: dayjs(patientRelation.dob).format('MM/DD/YY'),
+          gender: patientRelation.gender,
+          phone: patientRelation.phone,
+          maritalStatus: patientRelation.maritalStatus,
+          dp_url: patientRelation.dpUrl,
+          isDeleted: patientRelation.isDeleted
+            ? patientRelation.isDeleted
+            : false,
+          ins_id: patientRelation?.Insurance?.id,
+          key: patientRelation.id,
+        }
         : {}
 
     const patientInfo = {
@@ -743,7 +748,7 @@ debugger
         isDeleted: false,
         isNew: true,
       }
-      console.log("vvvvvvvv",newPatientFields);
+      console.log("vvvvvvvv", newPatientFields);
       const insurancePartner = {
         id: newPatientFields?.id,
         name: 'partner',
@@ -835,10 +840,10 @@ debugger
       // form.validateFields(['modalPhoneField'])
       NotificationWithIcon('error', 'Please add number to proceed')
     } else {
-        setOtpCheckForPhone(true)
-        setEditPhoneModal(false)
-        setOtpCheckForPhone(true)
-        setOTPModal(true)
+      setOtpCheckForPhone(true)
+      setEditPhoneModal(false)
+      setOtpCheckForPhone(true)
+      setOTPModal(true)
     }
   }
 
@@ -846,7 +851,7 @@ debugger
     console.log('patientssss', patient)
     console.log('editPhoneVerification', editPhoneVerification)
     console.log('selectEditPhoneNo', selectEditPhoneNo)
-    console.log("patientRelationInfo.phone",patientRelationInfo.phone);
+    console.log("patientRelationInfo.phone", patientRelationInfo.phone);
     // debugger
     if (patient.phone === selectEditPhoneNo) {
       // Update the phone field in the patient object
@@ -897,7 +902,7 @@ debugger
             (value) => value === '+92' + PhoneNoVerification
           ) !== undefined
 
-      
+
         if (numExistsInParentPatient || numExistsInPatientPartner) {
           NotificationWithIcon('error', 'Number already exists')
         } else {
@@ -947,7 +952,7 @@ debugger
   }
   console.log('Patient Depentends', patientDependent)
 
- 
+
   useEffect(() => {
     handleVerify()
   }, [])
@@ -977,36 +982,36 @@ debugger
     return otp;
   }
 
-  useEffect(()=>{
-    if(appointmentsBooked?.length > 0 && addAnotherApp == "Add Appintment"){
+  useEffect(() => {
+    if (appointmentsBooked?.length > 0 && addAnotherApp == "Add Appintment") {
       let booked = [];
       debugger
-      for(let i=0; i < appointmentsBooked?.length; i++){
-        if(appointmentsBooked[i]?.key === patient?.id &&  appointmentsBooked[i]?.isDependent === false){
+      for (let i = 0; i < appointmentsBooked?.length; i++) {
+        if (appointmentsBooked[i]?.key === patient?.id && appointmentsBooked[i]?.isDependent === false) {
           booked.push("parent");
         }
-        else if(appointmentsBooked[i]?.key === patientRelationInfo?.id &&  appointmentsBooked[i]?.isDependent === false){
+        else if (appointmentsBooked[i]?.key === patientRelationInfo?.id && appointmentsBooked[i]?.isDependent === false) {
           booked.push("partner");
         }
         else {
           booked.push(appointmentBookInfo[i]?.key);
         }
       }
-      console.log('bookedaaaaaaa',booked);
+      console.log('bookedaaaaaaa', booked);
       // setAllBookedApmnt(booked);
-      if(!booked.includes("parent")){
+      if (!booked.includes("parent")) {
         setSelected("radio");
       }
-      else if(!booked.includes("partner")){
+      else if (!booked.includes("partner")) {
         setSelected("radioChild");
       }
-      else{
+      else {
         let foundMatch = false;
         for (let j = 0; j < patientDependent?.length; j++) {
           const dep = patientDependent[j];
-          if(!booked.includes(dep?.id)){
+          if (!booked.includes(dep?.id)) {
             setSelected(`radioDependent${dep?.id}`);
-            foundMatch=true;
+            foundMatch = true;
             break
           }
         }
@@ -1016,7 +1021,7 @@ debugger
         }
       }
     }
-  },[])
+  }, [])
 
 
   return (
@@ -1101,7 +1106,7 @@ debugger
           })} */}
 
           {patientDependent.length !== 0 &&
-          patientDependent.some((dependent) => !dependent?.isDeleted) ? (
+            patientDependent.some((dependent) => !dependent?.isDeleted) ? (
             <p className="my-5 text-[18px] font-medium text-grey">
               Patient Dependents:
             </p>
@@ -1109,30 +1114,30 @@ debugger
 
           {patientDependent.map((patients, index) => {
             // if (!patients?.isDeleted) {
-              let isDisabled
-              if (editFor_ !== undefined) {
-                isDisabled =
-                  patients.id !== editFor_ && phoneNumbers.includes(patients.id)
-              }
-              // if (!patients?.isShow === false || !('isShow' in patients)) {
-                return (
-                  <PatientDependentFields
-                    index={index}
-                    patient={patients}
-                    isDisabled={isDisabled}
-                    selected={selected}
-                    handleRadioChange={handleRadioChange}
-                    onDelete={handleDeleteDependent}
-                    handleFieldsChange={(field, value) =>
-                      handleInputFieldsChange(field, value, index)
-                    }
-                    _for="dependent"
-                    dependentInsurance={dependentInsurance}
-                    setDependentInsurance={setDependentInsurance}
-                    // setSelected={setSelected}
-                  />
-                )
-              // }
+            let isDisabled
+            if (editFor_ !== undefined) {
+              isDisabled =
+                patients.id !== editFor_ && phoneNumbers.includes(patients.id)
+            }
+            // if (!patients?.isShow === false || !('isShow' in patients)) {
+            return (
+              <PatientDependentFields
+                index={index}
+                patient={patients}
+                isDisabled={isDisabled}
+                selected={selected}
+                handleRadioChange={handleRadioChange}
+                onDelete={handleDeleteDependent}
+                handleFieldsChange={(field, value) =>
+                  handleInputFieldsChange(field, value, index)
+                }
+                _for="dependent"
+                dependentInsurance={dependentInsurance}
+                setDependentInsurance={setDependentInsurance}
+              // setSelected={setSelected}
+              />
+            )
+            // }
             // }
           })}
 
@@ -1245,7 +1250,7 @@ debugger
                 <>
                   <button
                     className="m-2 px-8 py-[6px] rounded-md text-white bg-[#5ECCB9]"
-                    // htmlType="submit"
+                  // htmlType="submit"
                   >
                     Submit{' '}
                     <ClipLoader size={12} color="white" className="ml-2" />
@@ -1344,7 +1349,7 @@ debugger
           onCancel={() => setIsDependentModal(false)}
           // onOk={() => handleDependentFields()}
           footer={[]}
-          // handleSubmit={handleDependentFields}
+        // handleSubmit={handleDependentFields}
         >
           <ModelDependentField
             form={form1}

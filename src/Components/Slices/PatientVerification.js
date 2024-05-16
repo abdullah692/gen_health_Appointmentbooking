@@ -145,19 +145,24 @@ export const fetchPatientForRelation = createAsyncThunk(
   }
 )
 
-export const patientWithDependentsData = createAsyncThunk(
-  'Patient/patientWithDependentsData',
+export const patientsWithDependentsData = createAsyncThunk(
+  'Patient/patientsWithDependentsData',
   async (data, { rejectWithValue }) => {
+    debugger
     // debugger
     console.log('aaaaaaaaaaaaaaaaaa', data)
     try {
-      const apiRes = await axios.post(
-        `${process.env.REACT_APP_BACKEND_API_URL}/api/booking/patient`,
-        data.patient,
-        { withCredentials: true }
-      )
-      console.log('Api Res Sumit Patient Data', apiRes.data)
-      return apiRes?.data
+      // const apiRes = await axios.post(
+      //   `${process.env.REACT_APP_BACKEND_API_URL}/api/booking/patient`,
+      //   data.patient,
+      //   { withCredentials: true }
+      // )
+      // console.log('Api Res Sumit Patient Data', apiRes.data)
+      if(data)
+        {
+
+          return {success: true , message:"Info Added Successfully"}
+        }
     } catch (error) {
       return rejectWithValue(error)
     }
@@ -445,9 +450,10 @@ const PatientVerificationSlice = createSlice({
       // )
       // debugger
 
+      
       state.patientInfo = action.payload
+      
 
-      console.log('patienntInfo', state.patientInfo)
     },
     storeAppointmentType: (state, action) => {
       console.log('storeAppointmentType', action.payload)
