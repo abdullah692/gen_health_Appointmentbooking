@@ -19,16 +19,16 @@ function AppointmentType({ setCurrent, current }) {
   console.log('apptfor_aaaaa',apptfor_);
   const [searchTerm, setSearchTerm] = useState('')
   const [appointment, setAppointment] = useState('')
-  const [appId, setAppId] = useState(app?.type ? app?.type : '')
+  const [appId, setAppId] = useState(app?.appointment ? app?.appointment : '')
   const [loading, setLoading] = useState(true)
 
-  const appointmentTypes = useSelector(
-    (state) => state?.PatientReducer?.appointmentTypes
-  )
+  // const appointmentTypes = useSelector(
+  //   (state) => state?.PatientReducer?.appointmentTypes
+  // )
 
   console.log('Appoint Typeaaaaaaaaaaaaaaaaa', app)
 
-  console.log('Appoint Types', appointmentTypes)
+  // console.log('Appoint Types', appointmentTypes)
 
   const dispatch = useDispatch()
   let appIds
@@ -39,20 +39,13 @@ function AppointmentType({ setCurrent, current }) {
 
   const { id } = useParams()
 
-  // const filteredAppointmentTypes = appointmentTypes?.filter((item) =>
-  //   item?.type?.toLowerCase().includes(searchTerm.toLowerCase())
-  // )
+  const filteredAppointmentTypes = AppointmentTypes?.filter((item) =>
+    item?.appointment?.toLowerCase().includes(searchTerm.toLowerCase())
+  )
 
-  const filteredAppointmentTypes=[
-    {
-      id:1,
-      type:"Dental Checkup"
-    },
-    {
-      id:2,
-      type:"root cancal"
-    },
-  ]
+
+  console.log("filteredAppointmentTypes",filteredAppointmentTypes);
+ 
   const handleAppointment = (appointment) => {
     console.log('dsadsadsads', appointment)
     dispatch(storeAppointmentType(appointment))
@@ -64,7 +57,7 @@ function AppointmentType({ setCurrent, current }) {
   const handleSubmit = () => {
     // console.log('handleSubmit');
     if (app) {
-      console.log('handleSubmit current')
+      console.log('handleSubmit current',app)
       setAppId(app.type)
       setCurrent(4)
     } else {
@@ -86,7 +79,7 @@ function AppointmentType({ setCurrent, current }) {
       
       setLoading(false)
     }
-  }, [appointmentTypes])
+  }, [AppointmentTypes])
 
   console.log('Appointment', appointment)
   console.log('AppointmentId', appId)
@@ -124,7 +117,7 @@ function AppointmentType({ setCurrent, current }) {
           <>
             <div className="grid grid-cols-6 mb-10">
               {filteredAppointmentTypes?.map((item) => {
-                const isSelected = app?.type === item?.type
+                const isSelected = app?.appointment === item?.appointment
                 return (
                   <div
                     className={`py-5 ${
@@ -132,10 +125,10 @@ function AppointmentType({ setCurrent, current }) {
                         ? 'bg-[#14226D] text-white'
                         : 'bg-[#f1f4f9] text-[#464D59]'
                     } text-center text-[16px] rounded-md mx-2 my-4 p-3 text-[#464D59] cursor-pointer`}
-                    key={item?.type}
+                    key={item?.id}
                     onClick={() => handleAppointment(item)}
                   >
-                    {item?.type}
+                    {item?.appointment}
                   </div>
                 )
               })}

@@ -321,7 +321,7 @@ export const getAppointmentSlots = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     if (params) {
       const { dp_id, appType, dayName } = params
-      debugger
+      // debugger
       try {
         const apiRes = await axios.get(
           `${

@@ -7,40 +7,44 @@ import { handleDelete } from './AppointmentSummary'
 export const AppointmentTypes = [
   {
     id: '1',
-    appointment: 'Consultation',
+    appointment: 'Routine Check-up',
   },
   {
     id: '2',
-    appointment: 'Crown Delivery',
+    appointment: 'Fillings',
   },
   {
     id: '3',
-    appointment: 'Crown Preparation',
+    appointment: 'Tooth Extractions',
   },
   {
     id: '4',
-    appointment: 'Denture Insertion',
+    appointment: 'Root Canal Therapy',
   },
   {
     id: '5',
-    appointment: 'Denture Step',
+    appointment: 'Crowns and Bridges',
   },
   {
     id: '6',
-    appointment: 'Extraction',
+    appointment: 'Dental Implants',
   },
 
   {
     id: '7',
-    appointment: 'Post & core/ Core buildup',
+    appointment: 'Orthodontic Treatment',
   },
   {
     id: '8',
-    appointment: 'Root Canal Treatment',
+    appointment: 'Periodontal Treatment',
   },
   {
     id: '9',
-    appointment: 'Braces / Invisalign ',
+    appointment: 'Dentures',
+  },
+  {
+    id: '10',
+    appointment: 'Emergency Dental Care',
   },
 ]
 
