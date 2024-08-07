@@ -231,15 +231,15 @@ function Provider({ setCurrent, current }) {
   //   NotificationWithIcon('error', 'Please select any Provider')
   // }
 
-  useEffect(() => {
-    handleProvider()
-    findInsuranceTypeBykey(
-      apptfor_?.apmntFor,
-      parentPatientData,
-      childPatientData,
-      patientDependents
-    )
-  }, [])
+  // useEffect(() => {
+  //   handleProvider()
+  //   findInsuranceTypeBykey(
+  //     apptfor_?.apmntFor,
+  //     parentPatientData,
+  //     childPatientData,
+  //     patientDependents
+  //   )
+  // }, [])
 
   useEffect(() => {
     setLoading(true)

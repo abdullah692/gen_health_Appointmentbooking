@@ -48,10 +48,10 @@ export const AppointmentTypes = [
   },
 ]
 
-export const AvailableSlots = [
+export const timeSlots = [
   {
-    SlotTime: '1 Hour Slot',
-    data: [
+    interval: '1 Hour Slot',
+    slots: [
       {
         id: '1',
         startTime: '12:00 AM',
@@ -85,8 +85,8 @@ export const AvailableSlots = [
     ],
   },
   {
-    SlotTime: '1/2 Hour Slot',
-    data: [
+    interval: '1/2 Hour Slot',
+    slots: [
       {
         id: '1',
         startTime: '11:00 AM',

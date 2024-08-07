@@ -6,18 +6,23 @@ import { useSelector, useDispatch } from 'react-redux'
 import { storeSelectedTimeSlot } from '../Slices/PatientVerification'
 import { BounceLoader } from 'react-spinners'
 import { NotificationWithIcon } from '../../utils/Notification'
+import { timeSlots } from './data'
+
 
 function DateTimeSlot({ setCurrent, current }) {
   const [selectedTimeSlot, setSelectedTimeSlot] = useState('')
-  // const [loading, setLoading] = useState(false);
-  const timeSlots =
-    useSelector(
-      (state) => state?.PatientReducer?.appointmentSlots?.uniqueTimeSlots
-    ) || {}
+  const [loading, setLoading] = useState(false);
+  // const timeSlots =
+  //   useSelector(
+    //     (state) => state?.PatientReducer?.appointmentSlots?.uniqueTimeSlots
+    //   ) || {}
+    
+    console.log("timeslotssssssss",timeSlots);
 
-  const loading = useSelector(
-    (state) => state?.PatientReducer?.loading?.loading
-  )
+
+  // const loading = useSelector(
+  //   (state) => state?.PatientReducer?.loading?.loading
+  // )
   console.log('loadingaaaaaaaaaaaaa', loading)
   // const checkSlots =
   // useSelector(
@@ -32,7 +37,8 @@ function DateTimeSlot({ setCurrent, current }) {
   const dispatch = useDispatch()
 
   const handleSubmit = () => {
-    if (selectTimeSlot) {
+    debugger
+    if (selectedTimeSlot) {
       setCurrent(5)
     } else {
       NotificationWithIcon('error', 'Please select any time slot')
@@ -92,7 +98,7 @@ function DateTimeSlot({ setCurrent, current }) {
                 <BounceLoader color="#34d5b5" />
               </div>
             </>
-          ) : Object?.keys(timeSlots)?.length == 0 ? (
+          ) : timeSlots?.length == 0 ? (
             <>
               <p className="text-center mt-20 text-[20px] text-[#14226D] font-semibold">
                 No Slots Available
@@ -100,7 +106,8 @@ function DateTimeSlot({ setCurrent, current }) {
             </>
           ) : (
             <>
-              {Object.entries(timeSlots)?.map(([interval, slots]) => {
+              {/* {timeSlots?.map(([interval, slots]) => {
+                // console.log("interval",interval +"slotss");
                 return (
                   <div className="mt-6">
                     {slots.length == 0 ? (
@@ -135,7 +142,41 @@ function DateTimeSlot({ setCurrent, current }) {
                     )}
                   </div>
                 )
-              })}
+              })} */}
+
+{timeSlots.map((intervalObj) => (
+        <div key={intervalObj.interval} className="mt-6">
+          {intervalObj.slots.length === 0 ? (
+            <p className="text-center mt-20 text-[20px] text-[#14226D] font-semibold">
+              No Slots Available
+            </p>
+          ) : (
+            <>
+              <p className="text-[14px] text-[#676e7a] font-semibold">
+                {intervalObj.interval} Slots
+              </p>
+              <div className="mt-4 grid grid-cols-3 gap-7 cursor-pointer">
+                {intervalObj.slots.map((slot) => {
+                  const isSelected = slot === selectedTimeSlot;
+                  return (
+                    <div
+                      key={slot.id}
+                      className={`${
+                        isSelected ? 'bg-[#14226D] text-white text-[14px]' : 'bg-[#f1f4f9] text-[#464D59]'
+                      } p-3 text-center rounded-lg border-[1px] border-slate-400 text-[14px]`}
+                      onClick={() => handleSlots(slot)}
+                    >
+                      <p>
+                        {slot.startTime} - {slot.endTime}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          )}
+        </div>
+      ))}
             </>
           )}
 
