@@ -16,6 +16,7 @@ import {
 import dayjs from 'dayjs'
 import { NotificationWithIcon } from '../../utils/Notification'
 import { BounceLoader } from 'react-spinners'
+// import {ProviderDetails} from './data'
 
 function Provider({ setCurrent, current }) {
   const [providerData, setProviderData] = useState([])
@@ -241,12 +242,12 @@ function Provider({ setCurrent, current }) {
   //   )
   // }, [])
 
-  useEffect(() => {
-    setLoading(true)
-    if (providerData.length > 0) {
-      setLoading(false)
-    }
-  }, [providerData])
+  // useEffect(() => {
+  //   setLoading(true)
+  //   if (providerData.length > 0) {
+  //     setLoading(false)
+  //   }
+  // }, [providerData])
 
   return (
     <div className="m-10">
@@ -265,7 +266,7 @@ function Provider({ setCurrent, current }) {
       ) : (
         <>
           <div className="grid grid-cols-4 mt-5 mb-5 gap-6">
-            {providerData?.map((provider) => {
+            {ProviderDetails?.map((provider) => {
               const isSelected = provider === selectedProviderInfo
               console.log('isSelected', isSelected)
               return (
@@ -280,14 +281,14 @@ function Provider({ setCurrent, current }) {
                     key={provider?.id}
                   >
                     <div className="flex p-2">
-                      <div>
+                      <div className='mt-4' > 
                         <img
                           src={
                             provider?.dp_url
                               ? `${process.env.REACT_APP_BACKEND_API_URL}/api/files/${provider.dp_url}`
                               : dr
                           }
-                          className="h-20 w-16"
+                          className="h-[40px] w-[40px]"
                         />
                       </div>
                       <div className="ml-5">
@@ -295,7 +296,7 @@ function Provider({ setCurrent, current }) {
                           {provider?.name}
                         </p>
                         <p className="text-[16px]">{provider?.email}</p>
-                        <p className="text-[16px]">{provider?.phone}</p>
+                        <p className="text-[16px]">{provider?.phoneNo}</p>
                       </div>
                     </div>
                   </div>
@@ -327,7 +328,7 @@ function Provider({ setCurrent, current }) {
       ) : (
         <>
           <div className="grid grid-cols-4 mt-5 mb-5 gap-6">
-            {earliestDentistList?.map((provider) => {
+            {OtherDrs?.map((provider) => {
               const isSelected = provider === selectedProviderInfo
               return (
                 <>
@@ -341,14 +342,14 @@ function Provider({ setCurrent, current }) {
                     key={provider?.id}
                   >
                     <div className="flex p-2">
-                      <div>
+                      <div className='mt-6'>
                         <img
                           src={
                             provider?.dp_url
                               ? `${process.env.REACT_APP_BACKEND_API_URL}/api/files/${provider.dp_url}`
                               : dr
                           }
-                          className="h-20 w-16"
+                          className="h-[40px] w-[40px]"
                         />
                       </div>
                       <div className="ml-5">
@@ -356,11 +357,11 @@ function Provider({ setCurrent, current }) {
                           {provider?.name}
                         </p>
                         <p className="text-[16px] m-0">{provider?.email}</p>
-                        <p className="text-[16px] m-0">{provider?.phone}</p>
+                        <p className="text-[16px] m-0">{provider?.phoneNo}</p>
                         {/* <p className="text-[16px] m-0">{provider.date}</p> */}
                         <p className="text-[16px] m-0">
-                          {provider?.firstAvailableTime?.startTime} -{' '}
-                          {provider?.firstAvailableTime?.endTime}
+                          {provider?.startTime} -{' '}
+                          {provider?.endTime}
                         </p>
                       </div>
                     </div>

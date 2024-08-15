@@ -122,191 +122,186 @@ export const timeSlots = [
 ]
 
 
-export const SlotsDummy={
+export const SlotsDummy = {
   success: true,
   data: [
-      {
-          "id": 4,
-          "name": "Dr Tom Phatka",
-          "email": "tom1@cartoon.com",
-          "gender": "male",
-          "dp_url": "fa53b09da9b5c63d46b547bbc1163a7bd96f90ff-tom-and-jerry.jpg",
-          "dp_id": 1,
-          "max_chair_size": 4,
-          "phone": "+912302",
-          "marital_status": "divorced",
-          "AppointmentTypes": [
-              {
-                  "id": 12,
-                  "type": "Test",
-                  "duration": "00:10:00"
-              }
-          ],
-          "Availabilities": [
-              {
-                  "id": 22,
-                  "days": "sunday",
-                  "start_time": "15:00:00",
-                  "end_time": "19:30:00",
-                  "break_start_time": "17:20:00",
-                  "break_end_time": "05:40:00"
-              },
-              {
-                  "id": 24,
-                  "days": "monday",
-                  "start_time": "02:00:00",
-                  "end_time": "05:30:00",
-                  "break_start_time": null,
-                  "break_end_time": null
-              },
-              {
-                  "id": 27,
-                  "days": "thursday",
-                  "start_time": "16:00:00",
-                  "end_time": "19:00:00",
-                  "break_start_time": "16:30:00",
-                  "break_end_time": "16:40:00"
-              }
-          ]
-      },
-      {
-          "id": 6,
-          "name": "Dr Ben Ten",
-          "email": "drben@benten.com",
-          "gender": "female",
-          "dp_url": "e843e76e2b3deccc6bfe01c65e51bcc0875c36e8-ben10.jpg",
-          "dp_id": 1,
-          "max_chair_size": 4,
-          "phone": "+92129",
-          "marital_status": "single",
-          "AppointmentTypes": [
-              {
-                  "id": 15,
-                  "type": "Test",
-                  "duration": "00:20:00"
-              }
-          ],
-          "Availabilities": [
-              {
-                  "id": 36,
-                  "days": "tuesday",
-                  "start_time": "15:00:00",
-                  "end_time": "18:00:00",
-                  "break_start_time": null,
-                  "break_end_time": null
-              },
-              {
-                  "id": 37,
-                  "days": "friday",
-                  "start_time": "16:30:00",
-                  "end_time": "19:30:00",
-                  "break_start_time": null,
-                  "break_end_time": null
-              }
-          ]
-      }
+    {
+      "id": 4,
+      "name": "Dr Tom Phatka",
+      "email": "tom1@cartoon.com",
+      "gender": "male",
+      "dp_url": "fa53b09da9b5c63d46b547bbc1163a7bd96f90ff-tom-and-jerry.jpg",
+      "dp_id": 1,
+      "max_chair_size": 4,
+      "phone": "+912302",
+      "marital_status": "divorced",
+      "AppointmentTypes": [
+        {
+          "id": 12,
+          "type": "Test",
+          "duration": "00:10:00"
+        }
+      ],
+      "Availabilities": [
+        {
+          "id": 22,
+          "days": "sunday",
+          "start_time": "15:00:00",
+          "end_time": "19:30:00",
+          "break_start_time": "17:20:00",
+          "break_end_time": "05:40:00"
+        },
+        {
+          "id": 24,
+          "days": "monday",
+          "start_time": "02:00:00",
+          "end_time": "05:30:00",
+          "break_start_time": null,
+          "break_end_time": null
+        },
+        {
+          "id": 27,
+          "days": "thursday",
+          "start_time": "16:00:00",
+          "end_time": "19:00:00",
+          "break_start_time": "16:30:00",
+          "break_end_time": "16:40:00"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Dr Ben Ten",
+      "email": "drben@benten.com",
+      "gender": "female",
+      "dp_url": "e843e76e2b3deccc6bfe01c65e51bcc0875c36e8-ben10.jpg",
+      "dp_id": 1,
+      "max_chair_size": 4,
+      "phone": "+92129",
+      "marital_status": "single",
+      "AppointmentTypes": [
+        {
+          "id": 15,
+          "type": "Test",
+          "duration": "00:20:00"
+        }
+      ],
+      "Availabilities": [
+        {
+          "id": 36,
+          "days": "tuesday",
+          "start_time": "15:00:00",
+          "end_time": "18:00:00",
+          "break_start_time": null,
+          "break_end_time": null
+        },
+        {
+          "id": 37,
+          "days": "friday",
+          "start_time": "16:30:00",
+          "end_time": "19:30:00",
+          "break_start_time": null,
+          "break_end_time": null
+        }
+      ]
+    }
   ],
   uniqueTimeSlots: {
-      // "10min": [
-      //     {
-      //         d_id: [
-      //             4
-      //         ],
-      //         startTime: "1:00 PM",
-      //         endTime: "1:10 PM"
-      //     },
-      //     {
-      //         d_id: [
-      //             4
-      //         ],
-      //         startTime: "1:20 PM",
-      //         endTime: "1:30 PM"
-      //     },
-      //     {
-      //         d_id: [
-      //             4
-      //         ],
-      //         startTime: "12:00 PM",
-      //         endTime: "12:10 PM"
-      //     },
-      // ],
-      // "20min": [
-      //     {
-      //         d_id: [
-      //             6
-      //         ],
-      //         startTime: "3:00 PM",
-      //         endTime: "3:20 PM"
-      //     },
-      //     {
-      //         d_id: [
-      //             6
-      //         ],
-      //         startTime: "3:20 PM",
-      //         endTime: "3:40 PM"
-      //     },
-      // ]
+    // "10min": [
+    //     {
+    //         d_id: [
+    //             4
+    //         ],
+    //         startTime: "1:00 PM",
+    //         endTime: "1:10 PM"
+    //     },
+    //     {
+    //         d_id: [
+    //             4
+    //         ],
+    //         startTime: "1:20 PM",
+    //         endTime: "1:30 PM"
+    //     },
+    //     {
+    //         d_id: [
+    //             4
+    //         ],
+    //         startTime: "12:00 PM",
+    //         endTime: "12:10 PM"
+    //     },
+    // ],
+    // "20min": [
+    //     {
+    //         d_id: [
+    //             6
+    //         ],
+    //         startTime: "3:00 PM",
+    //         endTime: "3:20 PM"
+    //     },
+    //     {
+    //         d_id: [
+    //             6
+    //         ],
+    //         startTime: "3:20 PM",
+    //         endTime: "3:40 PM"
+    //     },
+    // ]
   },
   "earliestDentistList": []
 }
 
-export const ProviderDetails=[
+export const ProviderDetails = [
   {
-    id:1,
-    pic:drImg4,
-    name:"Dr. Irfan Ali",
-    email:"asadkhan@email.com",
-    phoneNo:"+123 123456789"
+    id: 1,
+    pic: drImg4,
+    name: "Dr. Irfan Ali",
+    email: "asadkhan@email.com",
+    phoneNo: "+123 123456789"
   },
   {
-    id:2,
-    pic:drImg,
-    name:"Dr. Nikita S.",
-    email:"asadkhan@email.com",
-    phoneNo:"+123 123456789"
+    id: 2,
+    pic: drImg,
+    name: "Dr. Nikita S.",
+    email: "asadkhan@email.com",
+    phoneNo: "+123 123456789"
   },
   {
-    id:3,
-    pic:drImg2,
-    name:"Dr. John T.",
-    email:"asadkhan@email.com",
-    phoneNo:"+123 123456789"
+    id: 3,
+    pic: drImg2,
+    name: "Dr. John T.",
+    email: "asadkhan@email.com",
+    phoneNo: "+123 123456789"
   },
   {
-    id:4,
-    pic:drImg3,
-    name:"Dr. Siro J.",
-    email:"asadkhan@email.com",
-    phoneNo:"+123 123456789"
+    id: 4,
+    pic: drImg3,
+    name: "Dr. Siro J.",
+    email: "asadkhan@email.com",
+    phoneNo: "+123 123456789"
   },
-  {
-    id:5,
-    pic:drImg3,
-    name:"Dr. Siro J.",
-    email:"asadkhan@email.com",
-    phoneNo:"+123 123456789"
-  },
-  
+
 ]
 
-export const OtherDrs=[
+export const OtherDrs = [
   {
-    id:1,
-    pic:drImg4,
-    name:"Dr. Irfan Ali",
-    email:"asadkhan@email.com",
-    phoneNo:"+123 123456789",
-    date:"24/03/2023",
-    slotTime:"09:00 PM - 10:00 PM"
+    id: 1,
+    pic: drImg4,
+    name: "Dr. Irfan Ali",
+    email: "asadkhan@email.com",
+    phoneNo: "+123 123456789",
+    date: "24/03/2023",
+    startTime: "11:00 PM",
+    endTime: "4:00 PM"
   },
   {
-    id:2,
-    pic:drImg,
-    name:"Dr. Nikita S.",
-    email:"asadkhan@email.com",
-    phoneNo:"+123 123456789",
-    date:"24/03/2023",
-    slotTime:"09:00 PM - 10:00 PM"
+    id: 2,
+    pic: drImg,
+    name: "Dr. Nikita S.",
+    email: "asadkhan@email.com",
+    phoneNo: "+123 123456789",
+    date: "24/03/2023",
+    startTime: "09:00 PM",
+    endTime: "10:00 PM"
   }
 ]
 
@@ -330,8 +325,8 @@ export const dataSource = [
     date: '20/04/2023',
     time: '09:00 AM - 10:00 AM',
   },
-  
-  
+
+
 ];
 
 export const InsuranceTypes = [
@@ -360,5 +355,5 @@ export const InsuranceTypes = [
     insurance: 'Supplemental Dental ',
   },
 
-  
+
 ]
