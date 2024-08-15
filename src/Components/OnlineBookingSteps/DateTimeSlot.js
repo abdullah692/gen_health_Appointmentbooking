@@ -10,7 +10,11 @@ import { timeSlots } from './data'
 
 
 function DateTimeSlot({ setCurrent, current }) {
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState('')
+
+  const selectTimeSlot = useSelector(
+    (state) => state?.PatientReducer?.selectedTimeSlot
+  )
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState(selectTimeSlot ? selectTimeSlot : "")
   const [loading, setLoading] = useState(false);
   // const timeSlots =
   //   useSelector(
@@ -30,9 +34,7 @@ function DateTimeSlot({ setCurrent, current }) {
   // ) ;
 
   console.log('timeSlots', timeSlots)
-  const selectTimeSlot = useSelector(
-    (state) => state?.PatientReducer?.selectedTimeSlot
-  )
+  
   console.log('selectTimeSlotcccccccc', selectTimeSlot)
   const dispatch = useDispatch()
 

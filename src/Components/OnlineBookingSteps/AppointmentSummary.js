@@ -435,9 +435,9 @@ function AppointmentSummary({ setCurrent, current }) {
   //   showTableData();
   // },[])
 
-  useEffect(() => {
-    populateTableData()
-  }, [doctorList, patientInfo])
+  // useEffect(() => {
+  //   populateTableData()
+  // }, [doctorList, patientInfo])
 
   return (
     <>

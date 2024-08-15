@@ -84,6 +84,8 @@ function Provider({ setCurrent, current }) {
   console.log('patients', patients)
   console.log('selectedProviderInfo', selectedProviderInfo)
   console.log('appointmentBookInfo', appointmentBookInfo)
+  console.log("selectedApp", selectedAppointmentType);
+
 
   const handleProvider = () => {
     const filteredData = doctorData?.filter((item) =>
@@ -153,46 +155,47 @@ function Provider({ setCurrent, current }) {
   const handleSubmit = () => {
     // if(selectedProviderInfo)
     // {
-    // debugger
+    debugger
     let appointmentData;
-    const checkVal=patientInfo?.dependents.some((val)=> val.id == apptfor_?.apmntFor)
-    console.log('checkValccccccc',checkVal);
-    if(checkVal)
-    {
-       appointmentData = {
+    const checkVal = patientInfo?.dependents.some((val) => val.id == apptfor_?.apmntFor)
+    console.log('checkValccccccc', checkVal);
+    if (checkVal) {
+      appointmentData = {
         startTime: ConvertDatanTime(dayNdate?.date, appTime?.startTime),
         endTime: ConvertDatanTime(dayNdate?.date, appTime?.endTime),
         avId: appTime?.av_id,
-        atId: selectedProviderInfo['AppointmentTypes'][0]?.id,
+        atId: selectedAppointmentType?.id,
         d_id: selectedProviderInfo?.id,
         insId: 15,
         priority: appType?.priority,
         _for: apptfor_?.apmntFor,
-        key:apptfor_?.apmntFor,
+        key: apptfor_?.apmntFor,
         appType: selectedAppointmentType?.type,
         providerName: selectedProviderInfo?.name,
         booked_by: patients?.patient?.id,
-        isDependent:true
+        isDependent: true
       }
     }
-      else{
-         appointmentData = {
-          startTime: ConvertDatanTime(dayNdate?.date, appTime?.startTime),
-          endTime: ConvertDatanTime(dayNdate?.date, appTime?.endTime),
-          avId: appTime?.av_id,
-          atId: selectedProviderInfo['AppointmentTypes'][0]?.id,
-          d_id: selectedProviderInfo?.id,
-          insId: 15,
-          priority: appType?.priority,
-          _for: apptfor_?.apmntFor,
-          key:apptfor_?.apmntFor,
-          appType: selectedAppointmentType?.type,
-          providerName: selectedProviderInfo?.name,
-          booked_by: patients?.patient?.id,
-          isDependent:false
+    else {
+      appointmentData = {
+        startTime: ConvertDatanTime(dayNdate?.date, appTime?.startTime),
+        endTime: ConvertDatanTime(dayNdate?.date, appTime?.endTime),
+        avId: appTime?.av_id,
+        atId: selectedAppointmentType?.id,
+        d_id: selectedProviderInfo?.id,
+        insId: 15,
+        priority: appType?.priority,
+        _for: apptfor_?.apmntFor,
+        key: apptfor_?.apmntFor,
+        appType: selectedAppointmentType?.type,
+        providerName: selectedProviderInfo?.name,
+        booked_by: patients?.patient?.id,
+        isDependent: false
       }
 
     }
+
+    console.log(appointmentData, "appointmentData");
 
     const dataToBeSend = {
       ...patients?.patient,
@@ -272,16 +275,15 @@ function Provider({ setCurrent, current }) {
               return (
                 <>
                   <div
-                    className={`${
-                      isSelected
+                    className={`${isSelected
                         ? 'bg-[#14226D] text-white'
                         : 'bg-[#f1f4f9] text-[#464D59]'
-                    }  border-[1px] border-slate-400 rounded-lg cursor-pointer`}
+                      }  border-[1px] border-slate-400 rounded-lg cursor-pointer`}
                     onClick={() => handleAddProvider(provider)}
                     key={provider?.id}
                   >
                     <div className="flex p-2">
-                      <div className='mt-4' > 
+                      <div className='mt-4' >
                         <img
                           src={
                             provider?.dp_url
@@ -333,11 +335,10 @@ function Provider({ setCurrent, current }) {
               return (
                 <>
                   <div
-                    className={`${
-                      isSelected
+                    className={`${isSelected
                         ? 'bg-[#14226D] text-white'
                         : 'bg-[#f1f4f9] text-[#464D59]'
-                    }  border-[1px] border-slate-400 rounded-lg cursor-pointer`}
+                      }  border-[1px] border-slate-400 rounded-lg cursor-pointer`}
                     onClick={() => handleAddProvider(provider)}
                     key={provider?.id}
                   >
