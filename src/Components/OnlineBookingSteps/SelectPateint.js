@@ -646,7 +646,7 @@ function SelectPateint({ setCurrent, current }) {
     patientDependent,
     dp_id
   ) {
-    // debugger
+    
     console.log(patientRelation, 'patientRelationsssssssss')
     console.log('patientRedux', patient)
     console.log(patientDependent, 'patientDependentzzzzzzzzz')
@@ -669,6 +669,7 @@ function SelectPateint({ setCurrent, current }) {
         }
         : {}
 
+        debugger   
     const patientInfo = {
       patient: {
         id: patient?.id ? patient?.id : '',
@@ -679,7 +680,7 @@ function SelectPateint({ setCurrent, current }) {
         phone: patient?.phone,
         maritalStatus: patient?.maritalStatus,
         ins_id: patient?.Insurance?.id,
-        key: patient?.id ? patient?.id : '',
+        key: patient?.indexId ? patient?.indexId : '',
         dp_id: dp_id,
         // dp_url: patient?.dpUrl,
         // patientPartner: patientRelation?.map((pr) => {

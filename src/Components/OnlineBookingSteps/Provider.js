@@ -195,7 +195,6 @@ function Provider({ setCurrent, current }) {
 
     }
 
-    console.log(appointmentData, "appointmentData");
 
     const dataToBeSend = {
       ...patients?.patient,

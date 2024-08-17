@@ -238,29 +238,27 @@ function AppointmentSummary({ setCurrent, current }) {
   //   }
 
   const populateTableData = () => {
-    const allDoctorList = [
-      ...doctorList.data,
-      ...doctorList.earliestDentistList,
-    ]
-    const newDataForTable = []
     debugger
+    // const allDoctorList = [
+    //   ...doctorList.data,
+    //   ...doctorList.earliestDentistList,
+    // ]
+    const newDataForTable = []
+    
     for (let i = 0; i < data?.length; i++) {
       const appointmentData = data[i]
-      const currDentist = allDoctorList.find(
-        (x) => x?.id == appointmentData?.d_id
-      )
-        console.log('currDentist',currDentist);
+      // const currDentist = allDoctorList.find(
+      //   (x) => x?.id == appointmentData?.d_id
+      // )
+      //   console.log('currDentist',currDentist);
       if (patientInfo?.patient?.key === appointmentData?._for) {
         newDataForTable.push({
           key: i,
           patientName: patientInfo?.patient?.name,
           appointmentType: appointmentData?.appType,
           appointmentBy: 'Self',
-          appointmentTime: currDentist?.firstAvailableTime
-            ? currDentist?.firstAvailableTime?.startTime +
-              '-' +
-              currDentist?.firstAvailableTime?.endTime
-            : formatTimeToAMPM(appointmentData?.startTime.split(' ')[1]) +
+          appointmentTime: 
+             formatTimeToAMPM(appointmentData?.startTime.split(' ')[1]) +
               '-' +
               formatTimeToAMPM(appointmentData?.endTime.split(' ')[1]),
           date: dayjs(appointmentData?.startTime.substr(0, 10)).format(
@@ -277,11 +275,8 @@ function AppointmentSummary({ setCurrent, current }) {
           patientName: patientInfo?.patient?.patientPartner?.name,
           appointmentType: appointmentData?.appType,
           appointmentBy: patientInfo?.patient?.name,
-          appointmentTime: currDentist?.firstAvailableTime
-            ? currDentist?.firstAvailableTime?.startTime +
-              '-' +
-              currDentist?.firstAvailableTime?.endTime
-            : formatTimeToAMPM(appointmentData?.startTime.split(' ')[1]) +
+          appointmentTime: 
+             formatTimeToAMPM(appointmentData?.startTime.split(' ')[1]) +
               '-' +
               formatTimeToAMPM(appointmentData?.endTime.split(' ')[1]),
           date: dayjs(appointmentData?.startTime.substr(0, 10)).format(
@@ -298,11 +293,7 @@ function AppointmentSummary({ setCurrent, current }) {
               patientName: patRel?.name,
               appointmentType: appointmentData?.appType,
               appointmentBy: patientInfo?.patient?.name,
-              appointmentTime: currDentist?.firstAvailableTime
-                ? currDentist?.firstAvailableTime?.startTime +
-                  '-' +
-                  currDentist?.firstAvailableTime?.endTime
-                : formatTimeToAMPM(appointmentData?.startTime.split(' ')[1]) +
+              appointmentTime:  formatTimeToAMPM(appointmentData?.startTime.split(' ')[1]) +
                   '-' +
                   formatTimeToAMPM(appointmentData?.endTime.split(' ')[1]),
               date: dayjs(appointmentData?.startTime.substr(0, 10)).format(
@@ -435,9 +426,9 @@ function AppointmentSummary({ setCurrent, current }) {
   //   showTableData();
   // },[])
 
-  // useEffect(() => {
-  //   populateTableData()
-  // }, [doctorList, patientInfo])
+  useEffect(() => {
+    populateTableData()
+  }, [ patientInfo])
 
   return (
     <>
