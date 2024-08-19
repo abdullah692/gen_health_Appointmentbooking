@@ -39,6 +39,7 @@ function AppointmentSummary({ setCurrent, current }) {
   )
   
   const data = useSelector((state) => state?.PatientReducer?.appointmentInfo)
+  
   const providerInfo = useSelector(
     (state) => state?.PatientReducer?.selectedProvider
   )

@@ -170,7 +170,7 @@ function Provider({ setCurrent, current }) {
         priority: appType?.priority,
         _for: apptfor_?.apmntFor,
         key: apptfor_?.apmntFor,
-        appType: selectedAppointmentType?.type,
+        appType: selectedAppointmentType?.appointment,
         providerName: selectedProviderInfo?.name,
         booked_by: patients?.patient?.id,
         isDependent: true
@@ -187,7 +187,7 @@ function Provider({ setCurrent, current }) {
         priority: appType?.priority,
         _for: apptfor_?.apmntFor,
         key: apptfor_?.apmntFor,
-        appType: selectedAppointmentType?.type,
+        appType: selectedAppointmentType?.appointment,
         providerName: selectedProviderInfo?.name,
         booked_by: patients?.patient?.id,
         isDependent: false
