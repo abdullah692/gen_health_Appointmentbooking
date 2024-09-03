@@ -407,7 +407,7 @@ function transformPatientData(
 }
 
 function transformParentPatient(patient) {
-  console.log('cccccccccccccccccc', patient)
+  console.log('ccccccccccccccccccparent', patient)
   const parentpatient = {
     id: patient?.id ? patient?.id : null,
     name: patient?.name,
@@ -418,7 +418,7 @@ function transformParentPatient(patient) {
     phone: patient?.phone,
     maritalStatus: patient?.maritalStatus,
     Insurance: patient?.Insurance,
-    key: patient?.id,
+    key: patient?.indexId,
     // dp_url: patient?.dpUrl,
   }
 

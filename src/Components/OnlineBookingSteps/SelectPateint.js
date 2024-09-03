@@ -184,7 +184,7 @@ function SelectPateint({ setCurrent, current }) {
   const { id } = useParams()
   console.log('dp_id', id)
   const [patient, setPatient] = useState({
-    indexId: generateId(),
+    indexId: parentPatientData.key ? parentPatientData.key : generateId(),
     id: patientData ? patientData.id : '',
     name: parentPatientData?.name ? parentPatientData?.name : patientData?.name,
     email: parentPatientData.email
@@ -665,7 +665,7 @@ debugger
             ? patientRelation.isDeleted
             : false,
           ins_id: patientRelation?.Insurance?.id,
-          key: patientRelation.id,
+          key: patientRelation.indexId,
         }
         : {}
 
@@ -735,7 +735,7 @@ debugger
   const handleAddPatient = (x) => {
     console.log('aaaaaaaaaaaaaaaaabudllah', x)
     try {
-      // debugger
+      debugger
       const newPatientFields = {
         indexId: generateId(),
         id: x?.data?.id ? x?.data?.id : '',
