@@ -4,7 +4,7 @@ import { MdDelete } from 'react-icons/md'
 import dayjs from 'dayjs'
 import { useSelector } from 'react-redux'
 import { AiOutlineEdit } from 'react-icons/ai'
-import {InsuranceTypes} from './data'
+import { InsuranceTypes } from './data'
 
 function PatientInputFields({
   patient,
@@ -52,7 +52,7 @@ function PatientInputFields({
     (state) => state?.VerifyPatientPhoneNo?.patientPhoneNo
   )
 
-  console.log(phoneNum,"storedphonneno");
+  console.log(phoneNum, "storedphonneno");
   const [selectedDate, setSelectedDate] = useState(null)
 
   // const PatientName = () => {
@@ -134,15 +134,15 @@ function PatientInputFields({
   //     )
   //   }
   // }
-  const radioProp = _for === 'parent' ? 'radio' : _for === 'child' ? 'radioChild' : 'radioChild' 
-  const nameProp =  _for === 'parent' ? 'name' : _for === 'child' ? 'nameChild' : 'nameChild'
+  const radioProp = _for === 'parent' ? 'radio' : _for === 'child' ? 'radioChild' : 'radioChild'
+  const nameProp = _for === 'parent' ? 'name' : _for === 'child' ? 'nameChild' : 'nameChild'
   const emailProp = _for === 'parent' ? 'email' : _for === 'child' ? 'emailChild' : 'emailChild'
   const phoneProp = _for === 'parent' ? 'phone' : _for === 'child' ? 'phoneChild' : 'phoneChild'
   const maritalstatusProp =
-  _for === 'parent' ? 'maritalStatus' : _for === 'child' ? 'maritalStatusChild' : 'maritalStatusChild'
-  const genderProp =  _for === 'parent' ? 'gender' : _for === 'child' ? 'genderChild' : 'genderChild'
+    _for === 'parent' ? 'maritalStatus' : _for === 'child' ? 'maritalStatusChild' : 'maritalStatusChild'
+  const genderProp = _for === 'parent' ? 'gender' : _for === 'child' ? 'genderChild' : 'genderChild'
   const dobProp = _for === 'parent' ? 'dob' : _for === 'child' ? 'dobChild' : 'dobChild'
-  const insuranceProp =  _for === 'parent' ? 'Insurance' : _for === 'child' ? 'InsuranceChild' : 'InsuranceChild'
+  const insuranceProp = _for === 'parent' ? 'Insurance' : _for === 'child' ? 'InsuranceChild' : 'InsuranceChild'
   // const relationProp = index === undefined ? 'relation' : `relation${index}`
   // console.log('relationProp', relationProp)
   const init = {}
@@ -262,7 +262,7 @@ function PatientInputFields({
                 defaultValue={patient?.phone ? patient?.phone : phoneNum}
                 style={{ marginRight: '8px' }}
                 value={patient?.phone ? patient?.phone : phoneNum}
-                //   style={{ width: 180 }}
+              //   style={{ width: 180 }}
               />
               <Button
                 // type="link"
@@ -330,9 +330,9 @@ function PatientInputFields({
               onChange={(value) => handleDropDownChange(`${dobProp}`, value)}
               disabled={isDisabled}
               disabledDate={disabledDate}
-              // defaultValue={
-              //   patient?.dob ? dayjs(patient?.dob, 'YYYY/MM/DD') : ''
-              // }
+            // defaultValue={
+            //   patient?.dob ? dayjs(patient?.dob, 'YYYY/MM/DD') : ''
+            // }
             />
           </Form.Item>
           <Form.Item
@@ -340,9 +340,9 @@ function PatientInputFields({
             // label="Gender"
             initialValue={
               insuranceProp === 'Insurance'
-                ? patient?.Insurance?.type
-                :  insuranceProp === 'InsuranceChild'? patient?.Insurance?.type
-                : null
+                ? patient?.Insurance
+                : insuranceProp === 'InsuranceChild' ? patient?.Insurance?.type
+                  : null
             }
             rules={[
               { required: true, message: 'Please select Insurance Type!' },
@@ -351,16 +351,20 @@ function PatientInputFields({
             <Select
               name={insuranceProp}
               placeholder="Insurance Type"
-              onChange={(value) =>
+              onChange={(value) => {
+
+                console.log("valueINs", value);
+
                 handleDropDownChange(`${insuranceProp}`, value)
+              }
               }
               disabled={isDisabled}
             >
               {InsuranceTypes?.map((ins) => {
                 return (
-                <Option key={ins.id}>
-                  {ins.insurance}
-                </Option>
+                  <Option key={ins.id} value={ins.insurance}>
+                    {ins.insurance}
+                  </Option>
                 )
               })}
             </Select>
@@ -412,24 +416,23 @@ function PatientInputFields({
               disabled={isDisabled}
             >
               <span
-                className={`flex mt-2 ${
-                  isDisabled
+                className={`flex mt-2 ${isDisabled
                     ? 'text-gray-400'
                     : 'text-gray-700 hover:text-red-600 '
-                }`}
+                  }`}
               >
                 <MdDelete size={20} />
                 Delete
               </span>
             </button>
           )}
-          </div>
-          {/* {selectedPatientIndex == id && ( */}
-          {/* <button onClick={() => onDelete(id)} className=''>
+        </div>
+        {/* {selectedPatientIndex == id && ( */}
+        {/* <button onClick={() => onDelete(id)} className=''>
              <span className='hover:text-red-600 flex mt-2'><MdDelete size={20} />Delete</span> 
             </button> */}
-          {/* {renderDeleteButton()} */}
-          {/* )} */}
+        {/* {renderDeleteButton()} */}
+        {/* )} */}
       </div>
     </div>
   )

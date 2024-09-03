@@ -355,13 +355,13 @@ function SelectPateint({ setCurrent, current }) {
   const handleInputFieldsChange = (field, value, index) => {
     console.log('fieldssssssssssssssssss', field)
     console.log('vlauesssssssssss', value)
-
+debugger
     if (index === -1) {
       if (field === 'Insurance') {
-        const convertValue = JSON.parse(value)
+        // const convertValue = JSON.parse(value)
         setPatient((prevState) => ({
           ...prevState,
-          [field]: convertValue,
+          [field]: value,
         }))
       } else {
         setPatient((prevState) => ({
@@ -679,7 +679,7 @@ function SelectPateint({ setCurrent, current }) {
         gender: patient?.gender,
         phone: patient?.phone,
         maritalStatus: patient?.maritalStatus,
-        ins_id: patient?.Insurance?.id,
+        ins_id: patient?.Insurance,
         key: patient?.indexId ? patient?.indexId : '',
         dp_id: dp_id,
         // dp_url: patient?.dpUrl,
