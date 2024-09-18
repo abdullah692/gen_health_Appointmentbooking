@@ -540,7 +540,7 @@ debugger
       // setCurrent(3)
       if (saveAction === 'save') {
         console.log('patientRelationssssss', patientRelationInfo)
-        console.log('patientssss', patient)
+        console.log('patientssss', patientDependent)
         debugger
         let key;
         if (selected === 'radio') {
@@ -548,8 +548,17 @@ debugger
         } else if (selected === 'radioChild') {
           key = patientRelationInfo?.indexId
         } else if (selected.startsWith('radioDependent')) {
+          debugger
           const index = parseInt(selected.substring("radioDependent".length), 10);
-          key = index
+          const dependents = patientDependent || [];
+  
+          // Filter to find the dependent based on the extracted index
+          const selectedDependent = dependents[index];
+        
+          // Assign the id value if the selectedDependent exists
+          if (selectedDependent) {
+            key = selectedDependent.id;
+          }
         }
         if (key != undefined) {
 
