@@ -15,7 +15,7 @@ function AppointmentConfirmed(props) {
   const handleConfirmed=()=>{
     dispatch(resetUsers());
     dispatch(resetPhoneNo());
-    navigate('/1');
+    navigate('/');
 
 
   }

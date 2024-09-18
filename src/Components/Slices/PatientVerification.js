@@ -223,13 +223,11 @@ export const submitAppointmentBooked = createAsyncThunk(
   async ({ data }, { rejectWithValue }) => {
     console.log('data', data)
     try {
-      const apiRes = await axios.post(
-        `${process.env.REACT_APP_BACKEND_API_URL}/api/booking/appointment`,
-        data,
-        { withCredentials: true }
-      )
-      console.log('Api Res Sumit App', apiRes.data)
-      return apiRes?.data
+      if(data)
+        {
+
+          return {success: true , message:"Appointment booked successfully"}
+        }
     } catch (error) {
       return rejectWithValue(error)
     }

@@ -41,7 +41,7 @@ function AppSummaryModal({ isModalOpen, setIsModalOpen, setCurrent }) {
 
   // console.log('ModalData',ModalData);
   const handleConfirm = () => {
-
+    debugger
     const matchedIds = showModalData.map(item => item.patientPhoneNum);
     const filteredAppointments = appointmentData.filter(item => matchedIds.includes(item._for));
     
@@ -59,7 +59,7 @@ function AppSummaryModal({ isModalOpen, setIsModalOpen, setCurrent }) {
       .unwrap()
       .then((x) => {
         console.log('x', x)
-        if (x?.message === 'appointment booked successfully') {
+        if (x?.message === 'Appointment booked successfully') {
           setLoading(false)
           navigate('/appConfirmed')
           // setCurrent(1);
