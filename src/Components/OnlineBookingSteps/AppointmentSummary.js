@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Table } from 'antd'
 import { columns, dataSource } from './data'
 import CancelButton from '../CancelButton/CancelButton'
+import { AppointmentTypes } from './data'
 import { Modal } from 'antd'
 import AppSummaryModal from '../Modal/AppointmentSummaryModal'
 import { useSelector, useDispatch } from 'react-redux'
@@ -130,7 +131,8 @@ function AppointmentSummary({ setCurrent, current }) {
           <Button
             className="border-none text-[#14226D] hover:text-[#14226D]"
             icon={<FaEdit size={18} />}
-            onClick={() => handleEdit(record?.patientPhoneNum)}
+            onClick={() =>console.log(record,"recordcheck")(
+             handleEdit(record?.patientPhoneNum))}
           />
           <Button
             className="border-none text-red-600 hover:text-red-600"
@@ -387,15 +389,16 @@ function AppointmentSummary({ setCurrent, current }) {
   console.log('setdataForTable', tableData)
 
   const  handleEdit = (phoneNum) => {
-    console.log('edit', phoneNum)
+    console.log('editaaaaaaaaaaa', phoneNum)
+    debugger
     dispatch(EditApp(true))
     dispatch(storeEditFor_(phoneNum))
     dispatch(storeAppFor_({ apmntFor: phoneNum }))
     const updateAppointment = tableData.find(
       (val) => val.patientPhoneNum === phoneNum
     )
-    const setEditAppointment = appointmentTypes.filter(
-      (app) => app.type === updateAppointment.appointmentType
+    const setEditAppointment = AppointmentTypes.filter(
+      (app) => app.appointment === updateAppointment.appointmentType
     )
     console.log('setEditAppointment', setEditAppointment)
     console.log('updateAppointment', updateAppointment)
